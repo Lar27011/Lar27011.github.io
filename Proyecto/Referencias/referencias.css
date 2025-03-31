@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f6d4ed; /* Rosa claro */
+    color: #2e797c; /* Turquesa oscuro */
+}
+
+header h1 {
+    text-align: center;
+    color: #d97b9d; /* Rosa oscuro */
+}
+
+main {
+    margin-top: 20px;
+}
+
+.reference {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #cceff0; /* Azul claro */
+    border: 1px solid #92c576; /* Verde */
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reference h2 {
+    margin: 0 0 10px;
+    color: #92c576; /* Verde */
+}
+
+.reference p {
+    margin: 0 0 10px;
+    color: #2e797c; /* Turquesa oscuro */
+}
+
+.reference a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #d97b9d; /* Rosa oscuro */
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.reference a:hover {
+    background-color: #92c576; /* Verde */
+}
+
+footer p {
+    text-align: center;
+    color: #2e797c; /* Turquesa oscuro */
+    font-size: 0.9em;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+strong {
+    color: #007BFF;
+}
