@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Unidad 3 | Actividad 3</title>
+        <link rel="image/x-icon" href="favicon.ico">
+        <meta charset="utf-8">
+        <meta name="Autor" content="Alvarez Ramirez Leonardo">
+        <meta name="Fecha" content="Miércoles 30 de Abril de 2025">
+        <meta name="Descripción" content="Javascript">
+    </head>
+    <body>
+        <h1> Unidad 3 | Actividad 3 :: Tema (Javascript)</h1>
+        <script>
+            let cols = window.prompt("Cuantas columnas quieres")
+            let opc = window.prompt("Elije una de las opciones:\n1. Suma\n2. Resta\n3. Multiplicar\n4. Dividir")
+            let val_1 = window.prompt("¿Cúal es el primer operando?");
+            let val_2 = window.prompt("¿Cúal es el segundo operando?");
+            switch(opc){
+                case "1":
+                    document.write("<h3> Operación Suma</h3>");
+                    document.write("<code> " + val_1 + " + " + val_2 + " = " + (val_1 + val_2) + "</code>");
+                case "2":
+                    document.write("<h3> Operación Resta</h3>");
+                    document.write("<code> " + val_1 + " - " + val_2 + " = " + (val_1 - val_2) + "</code>");
+                    break;
+                case "3":
+                    document.write("<h3> Operación Multiplica</h3>");
+                    document.write("<code> " + val_1 + " * " + val_2 + " = " + (val_1 * val_2) + "</code>");
+                    break;
+                case "4":
+                    document.write("<h3> Operación Divide</h3>");
+                    document.write("<code> " + val_1 + " / " + val_2 + " = " + (val_1 / val_2) + "</code>");
+                    break;
+            }
+        </script>
+    </body>
+</html>
