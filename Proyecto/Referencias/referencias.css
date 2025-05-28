@@ -1,84 +1,64 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-}
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 20px;
-    background-color: #f6d4ed; /* Rosa claro */
-    color: #2e797c; /* Turquesa oscuro */
+    margin: 0;
+    padding: 0;
+    background-color: #f6d4ed;
+    color: #2e797c;
 }
 
 header h1 {
     text-align: center;
-    color: #d97b9d; /* Rosa oscuro */
+    color: #d97b9d;
+    margin-top: 20px;
 }
 
 main {
     margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .reference {
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #cceff0; /* Azul claro */
-    border: 1px solid #92c576; /* Verde */
+    background-color: #cceff0;
+    border: 1px solid #92c576;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .reference h2 {
     margin: 0 0 10px;
-    color: #92c576; /* Verde */
+    color: #92c576;
 }
 
 .reference p {
     margin: 0 0 10px;
-    color: #2e797c; /* Turquesa oscuro */
+    color: #2e797c;
 }
 
 .reference a {
     text-decoration: none;
     color: #ffffff;
-    background-color: #d97b9d; /* Rosa oscuro */
+    background-color: #d97b9d;
     padding: 10px 15px;
     border-radius: 5px;
     display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .reference a:hover {
-    background-color: #92c576; /* Verde */
+    background-color: #92c576;
+    color: #ffffff;
 }
 
-footer p {
-    text-align: center;
-    color: #2e797c; /* Turquesa oscuro */
-    font-size: 0.9em;
-}
-
-h1 {
-    color: #333;
-    text-align: center;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    margin: 10px 0;
+footer {
+    background-color: #d97b9d;
     padding: 10px;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border-top: 2px solid #92c576;
+    text-align: center;
+    color: #ffffff;
 }
 
-strong {
-    color: #007BFF;
-}

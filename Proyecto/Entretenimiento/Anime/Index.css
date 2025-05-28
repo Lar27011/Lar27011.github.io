@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Cal Sans", sans-serif;
+    scroll-behavior: smooth;
+}
+body::before{
+        content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 250px;
+    z-index: 11;
+    background: linear-gradient(to top, #84495f, transparent);
+}
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: white;
+    background: linear-gradient(#864B63, #593E67);
+}
+table{
+    border: white 7px double;
+    width: 100%;
+}
+th, td {
+    padding-right: 30px;
+    padding: 3px;
+    color: #dfdfdf;
+    border: white 2px solid;
+}
+table tr td a { text-decoration: underline #d49ba7; color: #F8D9DE;}
+.featurette-divider{ color: white;}
+.banner{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background-image: url(Imgs/landscape.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+.banner .slider{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 15%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(700px);
+    animation: autoRun 20s linear infinite;
+    z-index: 11;
+}
+@keyframes autoRun{
+    from{
+        transform: perspective(700px) rotateX(-16deg) rotateY(0deg);
+    }to{
+        transform: perspective(700px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+.banner .slider .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    transform:
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(350px);
+}
+.banner .slider .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.banner .content{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 100vw);
+    height: max-content;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.banner .content h1{
+    font-size: 7em;
+    position: relative;
+}
+.banner .content h1::after{
+    position: absolute;
+    inset: 0 0 0 0;
+    content: attr(data-content);
+    z-index: 11;
+    -webkit-text-stroke: 2px #593E67;
+    color: transparent;
+}
+.banner .content .model{
+    background-image: url(Imgs/Makeine.png);
+    width: 100%;
+    height: 55vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-size: auto 130%;
+    background-repeat: no-repeat;
+    background-position: top right ;
+    z-index: 0;
+}
+.reggae-one-regular {
+    font-family: "Reggae One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}  
+  .cal-sans-regular {
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

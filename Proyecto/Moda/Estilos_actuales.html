@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Moda Japonesa Actual</title>
+    <style>
+.social-links {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255, 240, 245, 0.85); /* Fondo rosado claro con transparencia */
+  border: 2px solid #EFC3CA; /* Borde rosado pastel más sutil */
+  box-shadow: 0 0 5px #EFC3CA, 0 0 10px #EFC3CA; /* Sombras suaves */
+  border-radius: 8px;
+}
+
+.social-links h2 {
+  font-family: 'Didot', serif; /* Fuente más elegante y moderna */
+  color: #D49BA7; /* Tono rosado sofisticado */
+  text-shadow: 0 0 3px #D49BA7, 0 0 6px #D49BA7;
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.btn {
+  background-color: #EFC3CA;
+  color: black;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.2em;
+  box-shadow: 0 0 10px #EFC3CA, 0 0 20px #EFC3CA;
+  transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #d49ba7;
+  box-shadow: 0 0 15px #d49ba7, 0 0 30px #d49ba7;
+}
+
+        i:hover {color: #c98895; }
+        button:hover {background-color: #ff99aa;}
+        li {margin-bottom: 10px;}
+        a {transition: color 0.3s ease, background-color 0.3s ease;}
+        .dropdown-item {color: #EFC3CA;}
+        .dropdown-item:hover, .active{ color: #F8D9DE; background-color: #d49ba7; border-radius: 4px;}
+        .dropdown-menu {background-color: #c98895;}
+        .bg-pink {background-color: #c98895;}
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.55rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+
+        /* Animación de entrada */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff7f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            animation: fadeIn 1s ease-in-out;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #ffebef;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3 {
+            color: #ff6699;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+            animation: scaleUp 0.8s ease-in-out;
+        }
+
+        @keyframes scaleUp {
+            from {
+                transform: scale(0.9);
+                opacity: 0.8;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        figure {
+            text-align: center;
+        }
+
+        figcaption {
+            font-style: italic;
+            color: #666;
+        }
+
+        .tabla-moda {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .tabla-moda th, .tabla-moda td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .tabla-moda th {
+            background-color: #f8c8dc;
+            color: #5a3d5a;
+        }
+
+        .tabla-moda tr:nth-child(even) {
+            background-color: #ffe5e5;
+        }
+
+        .tabla-moda tr:nth-child(odd) {
+            background-color: #fce8d5;
+        }
+
+        .tabla-moda tr:hover {
+            background-color: #d6f3f5;
+            transition: 0.3s ease-in-out;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #ff6699;
+            color: white;
+            padding: 10px;
+        }
+        
+        .wallpaper-estilos {
+    background-image: url('https://wallpaperaccess.com/full/4322570.png'); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 70px;
+    position: relative;
+}
+
+/* Efecto degradado */
+.wallpaper-estilos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 0, 127, 0.6), rgba(255, 255, 255, 0)); /* Fucsia degradado */
+    z-index: 1;
+}
+
+/* Nueva tipografía y color para el título */
+.wallpaper-title-estilos {
+    font-family: 'EB Garamond', serif;
+    color: #ff007f; /* Fucsia intenso */
+    font-size: 3em;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px 40px;
+    border-radius: 10px;
+    z-index: 2;
+    position: relative;
+    animation: bounceFadeIn 1.5s ease-in-out;
+}
+
+/* Animación nueva: aparición con rebote */
+@keyframes bounceFadeIn {
+    0% { opacity: 0; transform: scale(0.7); }
+    50% { transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+        .content-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 1200px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.content-section img {
+    width: 350px;
+    border-radius: 15px;
+}
+
+.text-content {
+    max-width: 500px;
+    text-align: justify;
+    font-size: 1.2em;
+    color: #444;
+}
+
+/* Alternar estructura */
+.content-section.reverse {
+    flex-direction: row-reverse;
+}
+
+        .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, rgba(255, 0, 127, 0.4), rgba(255, 255, 255, 0.8));
+}
+
+/* Ajuste para centrar imágenes y aplicar animación */
+.image-container img {
+    width: 400px;
+    height: auto;
+    border-radius: 15px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Aplicación de animación cuando aparece en pantalla */
+.image-container.visible img {
+    opacity: 1;
+    transform: scale(1);
+    
+}
+
+@keyframes floatEffect {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0px); }
+}
+
+.image-container img {
+    animation: floatEffect 5s infinite ease-in-out;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo de imágenes */
+figure img {
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+/* Figcaption mejorado */
+figcaption {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+}
+
+@keyframes flipIn {
+    0% { transform: rotateX(90deg); opacity: 0; }
+    100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+/* Activamos la animación cuando las imágenes entran en pantalla */
+figure img.visible {
+    animation: flipIn 1s ease-in-out;
+    opacity: 1;
+}
+
+
+    </style>
+</head>
+<body>
+    <header data-bs-theme="dark">
+        <nav class="navbar navbar-expand-md fixed-top bg-pink">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../Portada/index.html">J-POP</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav_bg-dark">
+                    <ul class="navbar-nav dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Introduccion/index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Música
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                            <a class="dropdown-item" href="../jpopmusica.html">Historia</a>
+                            <a class="dropdown-item" href="../actualidadjpop.html">Actualidad</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Videojuegos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                            <a class="dropdown-item" href="../Videojuegos_japoneses/Videojuegos_japoneses.html">Actualidad</a>
+                            <a class="dropdown-item" href="../Videojuegos_japoneses/consolas.html">Consolas del Nipon</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Entretenimiento
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                            <a class="dropdown-item" href="../Entretenimiento/Anime/Anime.html">Anime y Mangas</a>
+                            <a class="dropdown-item" href="../Entretenimiento/Cine/Peliculas.html">Peliculas y novelas</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Moda y maquillaje
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                            <a class="dropdown-item" href="../Moda/moda-japonesa.html">Historia</a>
+                            <a class="dropdown-item" href="#">Estilos actuales</a>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </header>
+    <section class="wallpaper-estilos">
+    <h1 class="wallpaper-title-estilos">Estilos Actuales de la Moda Japonesa</h1>
+</section>
+
+
+    <main class="container" style="padding-top: 75px;">
+        <section>
+            <h2>Estilos Actuales de Moda Japonesa</h2>
+            <p>La moda japonesa contemporánea es una mezcla de tradición y vanguardia. Desde el minimalismo elegante hasta el streetwear audaz, Japón sigue marcando tendencias globales.</p>
+        </section>
+
+        <section>
+            <h3>Minimalismo Japonés</h3>
+            <p>Inspirado en la estética zen, este estilo se caracteriza por líneas limpias, colores neutros y prendas funcionales. Marcas como <b>Uniqlo</b> y <b>Comme des Garçons</b> han popularizado esta tendencia. El minimalismo japonés en la moda es más que una simple tendencia estética; es una filosofía que busca la belleza en la simplicidad y la funcionalidad. Este estilo se inspira en los principios del zen, eliminando lo innecesario y centrándose en líneas limpias, colores neutros y materiales de alta calidad</p>
+            <h3>Características principales</h3>
+            <ul>
+                <li>Paleta de colores neutros: predominan tonos como blanco, negro, gris y beige.</li>
+                <li>Prendas funcionales: diseños cómodos y versátiles.</li>
+                <li>Materiales naturales: uso de algodón, lino y lana.</li>
+                <li>Cortes estructurados: siluetas limpias y geométricas.</li>
+                <li>Influencias zen: enfoque en la armonía y el equilibrio.</li>
+            </ul>
+                <h3>Marcas icónicas</h3>
+            <ul>
+                <li><strong>Uniqlo</strong>: ropa accesible con un enfoque minimalista.</li>
+                <li><strong>Comme des Garçons</strong>: diseños vanguardistas con una estética depurada.</li>
+                <li><strong>Issey Miyake</strong>: piezas innovadoras con materiales y cortes precisos.</li>
+                <li><strong>Yohji Yamamoto</strong>: siluetas fluidas con una interpretación única del minimalismo.</li>
+                <li><strong>Rei Kawakubo</strong>: estilo conceptual dentro de la moda japonesa.</li>
+            </ul>
+            <figure>
+                <img src="https://tse4.mm.bing.net/th?id=OIG3.NdBbzK5QNZHuKAZDUkmD&cb=iwp1&pid=ImgGn" alt="Minimalismo japonés en la moda">
+                <figcaption>Minimalismo japonés: elegancia en la simplicidad.</figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Streetwear Japonés</h2>
+            <p>Influenciado por la cultura urbana, el streetwear japonés combina prendas oversized, estampados llamativos y accesorios únicos. Marcas como <b>A Bathing Ape</b> y <b>Undercover</b> lideran esta tendencia. El streetwear japonés es una de las expresiones más audaces de la moda urbana, fusionando influencias occidentales con elementos tradicionales japoneses. Este estilo se caracteriza por su enfoque en la individualidad y la experimentación, lo que ha llevado a la creación de marcas icónicas y colaboraciones innovadoras</p>
+            <h3>Características principales</h3>
+            <ul>
+                <li>Prendas oversized: siluetas amplias que aportan comodidad y un aire relajado.</li>
+                <li>Estampados llamativos: diseños inspirados en el anime, el arte japonés y la cultura pop.</li>
+                <li>Accesorios únicos: desde gorras y mochilas hasta zapatillas con detalles gráficos.</li>
+                <li>Influencia del hip-hop y el skate: elementos de la cultura urbana adaptados con un toque japonés.</li>
+                <li>Materiales de alta calidad: Japón es conocido por su meticulosa confección y atención al detalle.</li>
+            </ul>
+
+            <h3>Marcas destacadas</h3>
+            <ul>
+                <li><strong>A Bathing Ape (BAPE)</strong>: referente del streetwear con estampados de camuflaje y colaboraciones con artistas internacionales.</li>
+                <li><strong>Undercover</strong>: combina el punk con la moda urbana, ofreciendo diseños vanguardistas.</li>
+                <li><strong>Neighborhood</strong>: inspirada en la cultura motera y el estilo militar, con piezas robustas y funcionales.</li>
+                <li><strong>Visvim</strong>: mezcla técnicas tradicionales japonesas con un enfoque moderno en la moda urbana.</li>
+                <li><strong>WTAPS</strong>: estética militar y minimalista, una de las marcas más influyentes en el streetwear japonés.</li>
+            </ul>
+            figure>
+                <img src="https://tse4.mm.bing.net/th/id/OIG3.gp5B.ZAmm4udrlt_XTC7?cb=iwc1&pid=ImgGn" alt="Streetwear japonés">
+                <figcaption>Streetwear japonés: audaz y expresivo.</figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h3>Moda Techwear</h3>
+            <p>El techwear japonés es una tendencia que combina moda y tecnología, ofreciendo prendas altamente funcionales con un diseño futurista. Este estilo se inspira en la estética cyberpunk, la ropa técnica militar y la ciencia ficción, creando piezas que no solo son visualmente impactantes, sino también adaptables a distintos entornos</p>
+             <h3>Características principales</h3>
+            <ul>
+                <li>Materiales avanzados: uso de tejidos como GORE-TEX, eVent y Dyneema, resistentes al agua y duraderos.</li>
+                <li>Diseño ergonómico: cortes geométricos y estructurados que optimizan el movimiento.</li>
+                <li>Tecnología integrada: algunas prendas incluyen iluminación LED, sensores biométricos y conectividad Bluetooth.</li>
+                <li>Estética minimalista y funcional: predominio del color negro, capas superpuestas y detalles técnicos.</li>
+                <li>Adaptabilidad: prendas transformables que pueden ajustarse a diferentes condiciones climáticas.</li>
+            </ul>
+            <p>El techwear japonés tiene raíces en la moda urbana y la innovación tecnológica del país. Su estética se inspira en películas como Blade Runner, The Matrix y Ghost in the Shell, donde la ropa se adapta a un mundo hipertecnológico. También toma elementos de la vestimenta militar y el diseño industrial, priorizando la funcionalidad sobre lo decorativo</p>
+            <h3>Marcas destacadas</h3>
+            <ul>
+                <li><strong>ACRONYM</strong>: líder en techwear con diseños altamente técnicos y funcionales.</li>
+                <li><strong>Nike ACG</strong>: ropa adaptable a distintos entornos urbanos y naturales.</li>
+                <li><strong>Y-3 (Yohji Yamamoto x Adidas)</strong>: fusión de moda de lujo con tecnología deportiva.</li>
+                <li><strong>GUERRILLA-GROUP</strong>: marca con una fuerte influencia cyberpunk y militar.</li>
+                <li><strong>Outlier</strong>: especializada en materiales innovadores y diseño ergonómico.</li>
+            </ul>
+            <figure>
+                <img src="https://tse2.mm.bing.net/th?id=OIG2.kHawRtuvxVQc6ogXScCC&cb=iwp1&pid=ImgGn" alt="Techwear japonés">
+                <figcaption>Techwear japonés: innovación y diseño.</figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Influencias del Kawaii</h2>
+            <p>La moda kawaii sigue siendo un pilar en Japón, con colores pastel, estampados adorables y siluetas femeninas. Estilos como <b>Fairy Kei</b> y <b>Decora</b> reflejan esta estética. La moda kawaii es una de las expresiones más icónicas de la cultura japonesa, caracterizada por su enfoque en la ternura, los colores pastel y los detalles infantiles. Este estilo ha evolucionado desde los años 70 y sigue siendo una tendencia fuerte en Japón, especialmente en distritos como Harajuku</p>
+            <h2>origenes y evolucion</h2>
+            <p>El término kawaii significa "lindo" o "adorable" en japonés, y comenzó a ganar popularidad en la década de 1970. Inicialmente, se asociaba con la escritura juvenil decorativa, pero pronto se expandió a la moda, los juguetes y la cultura pop. Con la llegada de personajes como Hello Kitty en 1974, la estética kawaii se consolidó como un fenómeno cultural.</p>
+            <h3>Características principales</h3>
+            <ul>
+                <li>Uso de colores pastel y tonos suaves.</li>
+                <li>Estampados con personajes adorables y elementos infantiles.</li>
+                <li>Prendas con volantes, lazos y detalles femeninos.</li>
+                <li>Accesorios llamativos como diademas, pulseras y mochilas decoradas.</li>
+                <li>Influencias de la cultura pop japonesa y el anime.</li>
+            </ul>
+            <h3>Estilos destacados</h3>
+            <p>Existen varias subculturas dentro de la moda kawaii, cada una con su propia interpretación de la estética adorable:</p>
+            <ul>
+                <li><strong>Fairy Kei</strong>: Inspirado en la moda de los años 80, con colores pastel y estampados nostálgicos.</li>
+                <li><strong>Decora</strong>: Caracterizado por el uso excesivo de accesorios coloridos y llamativos.</li>
+                <li><strong>Gothic Lolita</strong>: Mezcla la estética kawaii con elementos góticos.</li>
+                <li><strong>Sweet Lolita</strong>: Enfoque más romántico con vestidos voluminosos y detalles delicados.</li>
+            </ul>
+            <h3>influencia global</h3>
+            <p>La moda kawaii ha trascendido Japón y ha influenciado diseñadores y marcas en todo el mundo. Su impacto se puede ver en la industria del maquillaje, la decoración y hasta en la tecnología, con productos diseñados para reflejar la estética kawaii</p>
+            <figure>
+                <img src="https://tse2.mm.bing.net/th/id/OIG2.tPsLEnajJ_sPf00hqZWY?cb=iwc1&pid=ImgGn" alt="Moda Kawaii japonesa">
+            
+                <figcaption>Moda Kawaii: dulzura y creatividad.</figcaption>
+            </figure>
+        </section>
+        <section>
+            <h2>Mori Kei</h2>
+            <p>El Mori Kei es un estilo de moda japonés que se traduce como "estilo del bosque". Surgió en Japón alrededor de 2006 y se inspira en la naturaleza, la tranquilidad y la estética de los cuentos de hadas</p>
+            <h3>Características principales</h3>
+            <ul>
+                <li>Tejidos naturales como algodón, lino y lana.</li>
+                <li>Paleta de colores terrosos: verdes, marrones, beige y grises suaves.</li>
+                <li>Capas y texturas que aportan comodidad y fluidez.</li>
+                <li>Patrones inspirados en la naturaleza, como estampados florales y tejidos artesanales.</li>
+                <li>Accesorios vintage y hechos a mano, como joyas de madera y coronas florales.</li>
+            </ul>
+            <h2>influencias y filosofia</h2>
+            <p>El Mori Kei no es solo un estilo de vestir, sino también una forma de vida. Quienes lo adoptan suelen disfrutar de actividades tranquilas como la lectura, la fotografía y el arte. Se valora la simplicidad, la conexión con la naturaleza y una estética nostálgica.</p>
+            <h3>Cómo llevar Mori Kei</h3>
+            <ul>
+                <li>Combinar varias capas de ropa con diferentes texturas.</li>
+                <li>Elegir prendas holgadas y cómodas.</li>
+                <li>Incorporar accesorios naturales y vintage.</li>
+                <li>Optar por peinados naturales, con ondas suaves o adornos florales.</li>
+            <figure>
+                <img src="https://i.pinimg.com/736x/76/b1/04/76b1045d9e6c09ff0d50cbb115b48d31--japanese-fashion-styles-japanese-street-styles.jpg" alt="Mori Kei">
+                <figcaption>El estilo Mori Kei busca la armonía con la naturaleza.</figcaption>
+            </figure>
+        </section>
+        <section>
+            <h2>Gyaru</h2>
+            <p>El Gyaru es un estilo de moda japonés que surgió en los años 90 y se caracteriza por su estética llamativa y su rechazo a los estándares tradicionales de belleza en Japón. Inspirado en la moda occidental y la cultura pop, este estilo enfatiza el maquillaje exagerado, el cabello voluminoso y la ropa colorida.</p>
+            <h3>Características principales</h3>
+            <ul>
+                <li>Maquillaje intenso con pestañas postizas y delineador grueso.</li>
+                <li>Cabello voluminoso, rubio o de colores vibrantes.</li>
+                <li>Bronceado artificial en estilos como Ganguro.</li>
+                <li>Ropa llamativa con estampados audaces y accesorios grandes.</li>
+                <li>Actitud extrovertida y segura.</li>
+            </ul>
+        <h3>Subestilos</h3>
+            <ul>
+                <li><strong>Hime Gyaru</strong>: Inspirado en la moda de princesas, con vestidos elegantes y accesorios sofisticados.</li>
+                <li><strong>Ganguro</strong>: Bronceado extremo, maquillaje blanco alrededor de los ojos y cabello teñido en tonos claros.</li>
+                <li><strong>Kuro Gyaru</strong>: Variante más oscura del Ganguro con maquillaje más dramático y ropa urbana.</li>
+                <li><strong>Manba y Yamanba</strong>: Evolución del Ganguro con colores más vibrantes y accesorios exagerados.</li>
+                <li><strong>Onee Gyaru</strong>: Estilo más maduro y elegante con prendas sofisticadas.</li>
+            </ul>
+            </ul>Influencia global</h3>
+            <p>El Gyaru tuvo su auge en los años 2000, especialmente en distritos como Shibuya, donde grupos de chicas adoptaban este estilo como una forma de expresión. Aunque su popularidad ha disminuido, sigue siendo una referencia en la moda alternativa japonesa.</p>
+            <figure>
+                <img src="https://i.pinimg.com/736x/f0/65/32/f06532535730b07553a6d46f67417a06.jpg" alt="Moda Gyaru">
+                <figcaption>Moda Gyaru: expresión juvenil y llamativa.</figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Comparación de Estilos Actuales</h2>
+            <table class="tabla-moda">
+                <thead>
+                    <tr>
+                        <th>Estilo</th>
+                        <th>Características</th>
+                        <th>Ejemplos de Marcas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Minimalismo</td>
+                        <td>Colores neutros, cortes simples, funcionalidad</td>
+                        <td>Uniqlo, Comme des Garçons</td>
+                    </tr>
+                    <tr>
+                        <td>Streetwear</td>
+                        <td>Prendas oversized, estampados llamativos</td>
+                        <td>A Bathing Ape, Undercover</td>
+                    </tr>
+                    <tr>
+                        <td>Techwear</td>
+                        <td>Materiales técnicos, diseño futurista</td>
+                        <td>Acronym, Guerilla Group</td>
+                    </tr>
+                    <tr>
+                        <td>Kawaii</td>
+                        <td>Colores pastel, estampados adorables</td>
+                        <td>Fairy Kei, Decora</td>
+                    </tr>
+                    <tr>
+                        <td>Mori Kei</td>
+                        <td>Colores tierra, prendas holgadas y capas naturales</td>
+                        <td>Grimoire, Earth Music & Ecology</td>
+                    </tr>
+                    <tr>
+                        <td>Gyaru</td>
+                        <td>Maquillaje llamativo, cabello voluminoso y ropa colorida</td>
+                        <td>MA*RS, Liz Lisa</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="social-links">
+  <h2>Sigue la Moda Japonesa en Redes</h2>
+  <div class="buttons">
+    <a href="https://www.instagram.com/tokyofashion/" target="_blank" class="btn">Instagram</a>
+    <a href="https://www.facebook.com/groups/224448814386285" target="_blank" class="btn">Facebook</a>
+    <a href="https://mx.pinterest.com/search/pins/?q=japanese%20aesthetic&rs=ac&len=6&source_id=ac_1ZdbNGx4&eq=japane&etslf=5649" target="_blank" class="btn">Pinterest</a>
+    <a href="https://www.youtube.com/results?search_query=japanese+fashion" target="_blank" class="btn">YouTube</a>
+  </div>
+</section>
+
+    </main>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const images = document.querySelectorAll("figure img");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    images.forEach(img => observer.observe(img));
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const imageContainers = document.querySelectorAll(".image-container");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.3 });
+
+    imageContainers.forEach(container => observer.observe(container));
+});
+</script>
+
+    <footer>
+        <p><a href="/Contactos/contactos.html" class="text-white">Contacto</a> | <a href="/Referencias/referencias.html" class="text-white">Referencias</a></p>
+    </footer>
+</body>
+</html>

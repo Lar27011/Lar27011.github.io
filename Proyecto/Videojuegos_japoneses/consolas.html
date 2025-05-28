@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consolas Japonesas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+                li:hover {color:rgb(136, 190, 201); }
+        button:hover {background-color:rgb(153, 197, 255);}
+        li {margin-bottom: 10px;}
+        a {transition: color 0.3s ease, background-color 0.3s ease;}
+        .dropdown-item {color:rgb(149, 183, 224);}
+        .dropdown-item:hover { color:rgb(141, 210, 240); background-color: #d49ba7;}
+        .dropdown-menu {background-color:rgb(197, 245, 192);}
+        .bg-pink {background-color:rgb(151, 204, 237);}
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.55rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        /* Variables de color */
+        :root {
+            --soft-pink: rgb(193, 231, 255);
+            --pale-pink: #e4fff7;
+            --text-white: #ffffff;
+            --text-gray: #ced4da;
+            --dark: #343a40;
+        }
+
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Press Start 2P', cursive;
+            color: #76c7c0;
+            text-shadow: 3px 3px 5px rgba(0, 255, 255, 0.7);
+        }
+
+        a {
+            color: #76c7c0;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        a:hover {
+            color: rgb(136, 190, 201);
+        }
+
+        /* Estilos de navegación */
+        .bg-pink {
+            background-color: rgb(151, 204, 237);
+        }
+
+        .dropdown-menu {
+            background-color: rgb(197, 245, 192);
+        }
+
+        .dropdown-item {
+            color: rgb(149, 183, 224);
+        }
+
+        .dropdown-item:hover {
+            color: rgb(141, 210, 240);
+            background-color: #d49ba7;
+        }
+
+        /* Efectos de imágenes */
+        .img-container {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin: 5px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Tabla gamer */
+        .tabla-gamer {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #00ffea;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            box-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
+        }
+
+        .tabla-gamer th, .tabla-gamer td {
+            border: 2px solid #00ffea;
+            padding: 10px;
+        }
+
+        .tabla-gamer th {
+            background-color: #008f63;
+            color: black;
+        }
+
+        .tabla-gamer tr:hover {
+            background-color: #00ffea;
+            color: black;
+            transition: 0.3s ease-in-out;
+        }
+
+        /* Animaciones */
+        @keyframes loadingEffect {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .consolas-gamer {
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 3px solid #ff00ff;
+    box-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff;
+    border-radius: 10px;
+    max-width: 80%;
+    margin: auto;
+}
+        section, img, .btn {
+            animation: loadingEffect 1s ease-in-out;
+        }
+
+        /* Botones y efectos */
+        .btn {
+            background-color: #00ffea;
+            color: black;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2em;
+            box-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background-color: #008f63;
+            box-shadow: 0 0 15px #00ffea, 0 0 30px #00ffea;
+        }
+        @keyframes buttonPress {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        .btn-gamer {
+            background-color: var(--soft-blue);
+            color: black;
+            padding: 12px 20px;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            border-radius: 8px;
+            border: 3px solid var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--soft-blue);
+            transition: 0.3s ease-in-out;
+        }
+        .btn-gamer:hover {
+            animation: buttonPress 0.3s infinite alternate;
+            box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--soft-blue);
+        }
+
+        /* Fondo con efecto parallax */
+        .wallpaper {
+            background-image: url('https://wallpaperaccess.com/full/6963165.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        .wallpaper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        /* Secciones */
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 3px solid #ff00ff;
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+            max-width: 80%; /* Ajusta el ancho máximo */
+            margin-left: auto; /* Centra la sección */
+            margin-right: auto;
+        }
+
+        section:nth-child(odd) {
+            border-color: #00ffff;
+        }
+
+        section:nth-child(even) {
+            border-color: #ff00ff;
+        }
+
+/* Contenedor de imágenes */
+        .section-images {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Permite que las imágenes se acomoden correctamente */
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Formato de imágenes */
+/* Contenedor de imágenes */
+.section-images {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra verticalmente */
+    flex-wrap: wrap; /* Permite que las imágenes se acomoden correctamente */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Formato de imágenes */
+.section-img {
+    width: 500px;
+    height: 500px;
+    border-radius: 8px;
+    border: 3px solid var(--soft-blue);
+    box-shadow: 0 0 15px var(--soft-blue), 0 0 25px var(--soft-blue);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    object-fit: cover;
+    display: block; /* Asegura que la imagen se comporte como bloque */
+    margin: auto; /* Centra horizontalmente */
+}
+
+/* Intensificar el efecto neon al hacer hover */
+.section-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px var(--neon-pink), 0 0 40px var(--neon-pink);
+    border-color: var(--neon-pink);
+}
+
+        /* Efecto glitch en los títulos */
+        @keyframes glitch {
+          0% { text-shadow: 2px 2px var(--neon-pink), -2px -2px var(--soft-blue); }
+          25% { text-shadow: -2px -2px var(--neon-pink), 2px 2px var(--soft-blue); }
+          50% { text-shadow: 3px 3px var(--neon-pink), -3px -3px var(--soft-blue); }
+          75% { text-shadow: -3px -3px var(--neon-pink), 3px 3px var(--soft-blue); }
+          100% { text-shadow: 2px 2px var(--neon-pink), -2px -2px var(--soft-blue); }
+        }
+        h1, h2 {
+          animation: glitch 0.3s infinite alternate;
+          font-family: 'Orbitron', sans-serif;
+        }
+h1.wallpaper-title {
+  animation: glitch 0.2s infinite alternate;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+}
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px #ff00ff, -3px -3px #00ffff; }
+            25% { text-shadow: -3px -3px #ff00ff, 3px 3px #00ffff; }
+            50% { text-shadow: 5px 5px #ff00ff, -5px -5px #00ffff; }
+            75% { text-shadow: -5px -5px #ff00ff, 5px 5px #00ffff; }
+            100% { text-shadow: 3px 3px #ff00ff, -3px -3px #00ffff; }
+        }
+
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
+            50% { box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff; }
+            100% { box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
+        }
+
+.wallpaper-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3.5em;
+    color: #00ffea;
+    text-align: center;
+    padding: 15px 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 4px solid #ff00ff;
+    border-radius: 10px;
+    animation: glitch 0.3s infinite alternate, neonPulse 1.5s infinite alternate;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wallpaper-title:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    transition: 0.3s ease-in-out;
+}
+
+
+
+/* Cursor neon */
+body {
+  cursor: url('https://cur.cursors-4u.net/games/gam-8/gam758.cur'), auto;
+}
+
+    </style>
+</head>
+<body>
+
+    <div id="root">
+        <header data-bs-theme="dark">
+            <nav class="navbar navbar-expand-md fixed-top bg-pink">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="../Portada/index.html">J-POP</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav_bg-dark">
+                        <ul class="navbar-nav dropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Introduccion/index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Música
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                                <a class="dropdown-item" href="#">Historia</a>
+                                <a class="dropdown-item" href="https://michilopotzli1.github.io/Proyecto/jpopmusica.html">Actualidad</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Videojuegos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                                <a class="dropdown-item" href="../Videojuegos_japoneses/Videojuegos_japoneses.html">Actualidad</a>
+                                <a class="dropdown-item" href="#">Consolas del Nipon</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Entretenimiento
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                                <a class="dropdown-item" href="../Entretenimiento/Anime/Anime.html">Anime y Mangas</a>
+                                <a class="dropdown-item" href="../Entretenimiento/Cine/Peliculas.html">Peliculas y novelas</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Moda y maquillaje
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                                <a class="dropdown-item" href="../Moda/moda-japonesa.html">Historia</a>
+                                <a class="dropdown-item" href="../Moda/Estilos_actuales.html">Estilos actuales</a>
+                            </div>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            </header>
+
+            <section class="wallpaper">
+                <h1 class="wallpaper-title">Consolas</h1>
+            </section>
+
+        <section>
+            <h2>Las Consolas Más Icónicas de Japón</h2>
+            <p>Japón ha sido el epicentro de la industria de los videojuegos, con consolas que han marcado generaciones.</p>
+        
+            <ul>
+                <li><b>1. Nintendo Entertainment System (NES) - 1983:</b> Revolucionó la industria con títulos como <i>Super Mario Bros.</i></li>
+                <li><b>2. Sega Mega Drive (Genesis) - 1988:</b> Destacó con juegos como <i>Sonic the Hedgehog</i> y <i>Streets of Rage</i>.</li>
+                <li><b>3. Super Nintendo Entertainment System (SNES) - 1990:</b> Introdujo gráficos mejorados y clásicos como <i>The Legend of Zelda</i>.</li>
+                <li><b>4. Sony PlayStation - 1994:</b> Innovó con juegos en 3D como <i>Final Fantasy VII</i> y <i>Resident Evil</i>.</li>
+                <li><b>5. Sega Dreamcast - 1998:</b> Pionera en juego en línea con títulos como <i>Shenmue</i> y <i>Jet Set Radio</i>.</li>
+                <li><b>6. Nintendo Switch - 2017:</b> Su diseño híbrido revolucionó la experiencia portátil y de sobremesa.</li>
+            </ul>
+            <figure>
+                <img src="https://th.bing.com/th/id/OIP.xFJRcSDgvaUOd7ZGXpcsLQHaES?cb=iwc2&rs=1&pid=ImgDetMain" alt="Sega Mega Drive" class="section-img">
+                <figcaption>Nintendo Entertainment System (NES), una de las consolas más influyentes de la era clásica.</figcaption>
+            </figure>
+        </section>
+        
+    </section>
+
+    <section>
+        <h2>Era Clásica (1980-1990): El Nacimiento de las Consolas Domésticas</h2>
+        <p>Durante los años 80, Japón revolucionó la industria de los videojuegos con la llegada de las primeras consolas domésticas. Este período marcó el inicio de franquicias icónicas y el establecimiento de estándares tecnológicos que definirían el futuro del gaming.</p>
+    
+        <h3>Las Consolas Más Representativas</h3>
+        <ul>
+            <li><b>Nintendo Entertainment System (NES) - 1983:</b> Lanzada en Japón como **Famicom**, esta consola introdujo títulos legendarios como <i>Super Mario Bros.</i> y <i>The Legend of Zelda</i>.</li>
+            <li><b>Sega Master System - 1985:</b> Competencia directa de Nintendo, con juegos como <i>Alex Kidd in Miracle World</i> y <i>Phantasy Star</i>.</li>
+            <li><b>PC Engine (TurboGrafx-16) - 1987:</b> Desarrollada por NEC, destacó por sus gráficos avanzados y títulos como <i>Bonk's Adventure</i>.</li>
+        </ul>
+    
+        <h3>Innovaciones Tecnológicas</h3>
+        <ul>
+            <li><b>Gráficos en 8 bits:</b> Permitieron mayor detalle visual en comparación con los juegos arcade.</li>
+            <li><b>Cartuchos intercambiables:</b> Facilitó la expansión de bibliotecas de juegos sin necesidad de comprar nuevas consolas.</li>
+            <li><b>Mandos ergonómicos:</b> Mejoraron la experiencia de juego con diseños más cómodos.</li>
+        </ul>
+    
+        <h3>Impacto Cultural</h3>
+        <ul>
+            <li><b>Expansión global:</b> Japón dominó el mercado, pero las consolas llegaron a hogares de todo el mundo.</li>
+            <li><b>Nacimiento de franquicias:</b> <i>Super Mario, Final Fantasy y Metroid</i> surgieron en esta época.</li>
+            <li><b>Competencia entre empresas:</b> Nintendo y SEGA protagonizaron una de las rivalidades más famosas de la industria.</li>
+        </ul>
+    
+        <figure>
+            <img src="data:image/webp;base64,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" alt="Nintendo Entertainment System" class="section-img">
+            <figcaption>Nintendo Entertainment System (NES), una de las consolas más influyentes de la era clásica.</figcaption>
+        </figure>
+    </section>
+    
+
+    <section>
+        <h2>Era de los 16 y 32 Bits (1990-2000): La Revolución de los Gráficos y la Jugabilidad</h2>
+        <p>Durante los años 90, la industria de los videojuegos experimentó un salto tecnológico con la llegada de las consolas de 16 y 32 bits. Este período marcó la transición de los gráficos en 2D a los entornos tridimensionales y la evolución de los juegos de rol y acción.</p>
+    
+        <h3>Las Consolas Más Representativas</h3>
+        <ul>
+            <li><b>Super Nintendo Entertainment System (SNES) - 1990:</b> Introdujo gráficos mejorados y títulos como <i>The Legend of Zelda: A Link to the Past</i>.</li>
+            <li><b>Sega Mega Drive (Genesis) - 1988:</b> Popularizó franquicias como <i>Sonic the Hedgehog</i> y <i>Streets of Rage</i>.</li>
+            <li><b>Sony PlayStation - 1994:</b> Revolucionó la industria con juegos en 3D como <i>Final Fantasy VII</i> y <i>Metal Gear Solid</i>.</li>
+            <li><b>Nintendo 64 - 1996:</b> Introdujo mundos abiertos con títulos como <i>Super Mario 64</i> y <i>The Legend of Zelda: Ocarina of Time</i>.</li>
+        </ul>
+    
+        <h3>Innovaciones Tecnológicas</h3>
+        <ul>
+            <li><b>Gráficos en 16 y 32 bits:</b> Permitieron mayor detalle visual y efectos avanzados.</li>
+            <li><b>CD-ROM como formato de juego:</b> Introdujo cinemáticas y bandas sonoras de alta calidad.</li>
+            <li><b>Primeros juegos en 3D:</b> Cambiaron la forma de jugar con entornos tridimensionales.</li>
+        </ul>
+    
+        <h3>Impacto Cultural</h3>
+        <ul>
+            <li><b>Expansión global:</b> Las consolas japonesas dominaron el mercado internacional.</li>
+            <li><b>Nacimiento de franquicias:</b> <i>Resident Evil, Tekken y Gran Turismo</i> surgieron en esta época.</li>
+            <li><b>Competencia entre empresas:</b> Sony, Nintendo y SEGA protagonizaron una intensa rivalidad.</li>
+        </ul>
+    
+        <figure>
+            <img src="https://th.bing.com/th/id/OIP.l8qs9uWlQvpFNTvCaUVbEwHaFI?cb=iwc2&rs=1&pid=ImgDetMain" alt="Super Nintendo Entertainment System" class="section-img">
+            <figcaption>Super Nintendo Entertainment System (SNES), una de las consolas más influyentes de la era de los 16 bits.</figcaption>
+        </figure>
+    </section>
+    
+
+    <section>
+        <h2>Consolas Modernas (2000-presente): Evolución y Tecnología Avanzada</h2>
+        <p>Desde el año 2000, las consolas han evolucionado con gráficos de alta definición, conectividad en línea y experiencias inmersivas. Japón sigue siendo un líder en la industria con innovaciones que han redefinido el gaming.</p>
+    
+        <h3>Las Consolas Más Representativas</h3>
+        <ul>
+            <li><b>PlayStation 2 - 2000:</b> La consola más vendida de la historia, con títulos como <i>Grand Theft Auto: San Andreas</i> y <i>Final Fantasy X</i>.</li>
+            <li><b>Nintendo Wii - 2006:</b> Introdujo controles de movimiento revolucionarios con juegos como <i>Wii Sports</i>.</li>
+            <li><b>PlayStation 4 - 2013:</b> Potenció el gaming en línea y la realidad virtual con títulos como <i>Bloodborne</i> y <i>God of War</i>.</li>
+            <li><b>Nintendo Switch - 2017:</b> Innovó con su diseño híbrido portátil y de sobremesa, con juegos como <i>The Legend of Zelda: Breath of the Wild</i>.</li>
+            <li><b>PlayStation 5 - 2020:</b> Introdujo gráficos en 4K y tiempos de carga ultrarrápidos.</li>
+        </ul>
+    
+        <h3>Innovaciones Tecnológicas</h3>
+        <ul>
+            <li><b>Gráficos en alta definición:</b> Desde los 1080p hasta el 4K y 8K.</li>
+            <li><b>Realidad virtual:</b> PlayStation VR y otras tecnologías han cambiado la inmersión en los videojuegos.</li>
+            <li><b>Conectividad en línea:</b> Juegos multijugador y servicios de streaming como PlayStation Now.</li>
+        </ul>
+    
+        <h3>Impacto Cultural</h3>
+        <ul>
+            <li><b>Expansión del gaming:</b> Más accesible con juegos en la nube y suscripciones.</li>
+            <li><b>Esports y streaming:</b> Plataformas como Twitch han impulsado la comunidad gamer.</li>
+            <li><b>Innovación japonesa:</b> Nintendo y Sony siguen liderando con nuevas tecnologías.</li>
+        </ul>
+    
+        <figure>
+            <img src="https://s.hdnux.com/photos/01/23/30/12/21856956/3/rawImage.jpg" alt="Nintendo Switch" class="section-img">
+            <figcaption>Nintendo Switch, una de las consolas más innovadoras de la era moderna.</figcaption>
+        </figure>
+    </section>
+    
+    <section>
+    <h2>Tabla Gamer: Consolas Japonesas</h2>
+    <table class="tabla-gamer">
+        <thead>
+            <tr>
+                <th>Consola</th>
+                <th>Año de Lanzamiento</th>
+                <th>Características Destacadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nintendo Entertainment System (NES)</td>
+                <td>1983</td>
+                <td>Revolucionó la industria con títulos como Super Mario Bros.</td>
+            </tr>
+            <tr>
+                <td>Sega Mega Drive (Genesis)</td>
+                <td>1988</td>
+                <td>Popularizó franquicias como Sonic the Hedgehog.</td>
+            </tr>
+            <tr>
+                <td>Super Nintendo Entertainment System (SNES)</td>
+                <td>1990</td>
+                <td>Introdujo gráficos mejorados y clásicos como The Legend of Zelda.</td>
+            </tr>
+            <tr>
+                <td>Sony PlayStation</td>
+                <td>1994</td>
+                <td>Innovó con juegos en 3D como Final Fantasy VII.</td>
+            </tr>
+            <tr>
+                <td>Sega Dreamcast</td>
+                <td>1998</td>
+                <td>Pionera en juego en línea con títulos como Shenmue.</td>
+            </tr>
+            <tr>
+                <td>Nintendo Switch</td>
+                <td>2017</td>
+                <td>Diseño híbrido que revolucionó la experiencia portátil y de sobremesa.</td>
+            </tr>
+            <tr>
+                <td>PlayStation 5</td>
+                <td>2020</td>
+                <td>Gráficos en 4K y tiempos de carga ultrarrápidos.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<section class="consolas-gamer">
+    <h2>Consolas Legendarias</h2>
+    <div class="botones-container">
+        <a href="https://www.nintendo.com/systems/nes-classic/" class="btn-gamer" target="_blank">Nintendo Entertainment System (NES)</a>
+        <a href="https://www.sega.com/" class="btn-gamer" target="_blank">Sega Mega Drive (Genesis)</a>
+        <a href="https://www.nintendo.com/systems/super-nes-classic/" class="btn-gamer" target="_blank">Super Nintendo Entertainment System (SNES)</a>
+        <a href="https://www.playstation.com/en-us/" class="btn-gamer" target="_blank">Sony PlayStation</a>
+        <a href="https://www.sega.com/" class="btn-gamer" target="_blank">Sega Dreamcast</a>
+        <a href="https://www.nintendo.com/switch/" class="btn-gamer" target="_blank">Nintendo Switch</a>
+        <a href="https://www.playstation.com/en-us/ps5/" class="btn-gamer" target="_blank">PlayStation 5</a>
+    </div>
+</section>
+
+    
+</main>
+
+<footer>
+    <p>© 2025 Consolas Japonesas | Todos los derechos reservados</p>
+</footer>
+
+
+
+
+</body>
+</html>

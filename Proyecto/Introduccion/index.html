@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Carousel Template · Bootstrap v5.3</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+
+      li:hover {color: #c98895; }
+      .dropdown-item {color: #EFC3CA;}
+      .dropdown-item:hover, .active{ color: #F8D9DE; background-color: #d49ba7; border-radius: 4px;}
+      .dropdown-menu {background-color: #c98895;}
+      .bg-pink{background-color: #c98895;}
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+  <body>
+<header data-bs-theme="dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-pink">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../Portada/index.html">J-POP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav_bg-dark">
+        <ul class="navbar-nav dropdown">
+          <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Música
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                  <a class="dropdown-item" href="../jpopmusica.html">Historia</a>
+                  <a class="dropdown-item" href="../actualidadjpop.html">Actualidad</a>
+              </div>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Videojuegos
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                  <a class="dropdown-item" href="../Videojuegos_japoneses/Videojuegos_japoneses.html/">Actualidad</a>
+                  <a class="dropdown-item" href="../Videojuegos_japoneses/consolas.html/">Consolas del Nipon</a>
+              </div>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Entretenimiento
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                  <a class="dropdown-item" href="../Entretenimiento/Anime/Anime.html">Anime y Mangas</a>
+                  <a class="dropdown-item" href="../Entretenimiento/Cine/Peliculas.html">Peliculas y novelas</a>
+              </div>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Moda y maquillaje
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                  <a class="dropdown-item" href="../Moda/moda-japonesa.html">Historia</a>
+                  <a class="dropdown-item" href="../Moda/Estilos_actuales.html">Estilos actuales</a>
+              </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</header>
+
+<main>
+
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+          <image href="banners/banner_jpopmusic.png" x="0" y="0" width="100%" height="100%">
+        </svg>
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Conoce la Música</h1>
+            <p>Explora otras barreras músicales orientales y descubre lo que puede ser tu proximo genero favorito.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="banner_smash.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+          <image href="banners/banner_smash.jpg" x="0" y="0" width="100%" height="100%">
+        </svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Videojuegos y Entretenimiento</h1>
+            <p><b>Conoce la razón de un Japon tan popular y enamorate de sus encantos.</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+          <image href="banners/banner_moda.jpg" x="0" y="0"></image>
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Moda</h1>
+            <p>Aprende de la historia por medio de la moda Japonesa y encuentra nuevos estilos que te podran enamorar!.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">¿Qué es <span class="text-body-secondary">la Cultura Japonesa?.</span></h2>
+        <p class="lead">Japón es una nación rica en tradiciones y valores que se remontan a miles de años. Desde las ceremonias del té hasta los jardines zen, la cultura japonesa se caracteriza por su enfoque en la armonía, el respeto y la atención al detalle. Esta filosofía no solo está presente en su vida diaria, sino que también influye en su arquitectura, arte, gastronomía y moda.<br>Con el tiempo, Japón ha logrado una combinación única de tradición y modernidad. Las festividades tradicionales como el <b>Gion Matsuri</b> y el <b>Tanabata</b> conviven con una cultura pop que ha dado lugar a tendencias globales como el <b>anime</b>, el <b>manga</b> y los <b>videojuegos</b>. Esta mezcla de lo antiguo y lo nuevo hace que la cultura japonesa sea fascinante para millones de personas en todo el mundo.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="Imgs/Cultura.jpg">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading fw-normal lh-1">Valores <span class="text-body-secondary">Fundamentales.</span></h2>
+        <ul class="lead">
+            <li><b>Respeto:</b> Un principio central en las relaciones sociales y familiares.</li>
+            <li><b>Armonía:</b> Reflejado en la estética del arte, los jardines y las ceremonias.</li>
+            <li><b>Trabajo en equipo:</b> Una mentalidad colectiva que se percibe en su forma de vida y economía.</li>
+        </ul>
+        <p class="leader">Japón no solo preserva su herencia cultural, sino que también lidera en innovación tecnológica, siendo pionero en robótica, infraestructura y diseño. Esto le da un lugar destacado en la economía mundial, mientras sigue siendo un ícono cultural. </p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="Imgs/papers.jpg" padding-top: 15%>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Explora <span class="text-body-secondary">Más Temas.</span></h2>
+        <p class="lead">Si deseas conocer más sobre las maravillas de Japón, aquí encontrarás temas destacados que capturan lo más esencial de su identidad cultural. Desde su impacto en la moda hasta su contribución al entretenimiento global, Japón es un país que nunca deja de sorprender.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="Imgs/Exploring.jpg">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-end"><a href="#">Back to top</a></p>
+  </footer>
+</main>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>
+

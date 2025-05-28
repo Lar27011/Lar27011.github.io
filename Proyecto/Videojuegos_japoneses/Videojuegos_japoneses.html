@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="image/x-icon" href="../favicon.ico">
+    <title>Plantilla J-POP</title>
+    <meta name="autor" content="Leonardo Alvarez Ramirez & Company">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bg-pink {
+    background-color: #000000; 
+}
+        
+
+        li:hover {color:rgb(136, 190, 201); }
+        button:hover {background-color:rgb(153, 197, 255);}
+        li {margin-bottom: 10px;}
+        a {transition: color 0.3s ease, background-color 0.3s ease;}
+        .dropdown-item {color:rgb(149, 183, 224);}
+        .dropdown-item:hover { color:rgb(141, 210, 240); background-color: #d49ba7;}
+        .dropdown-menu {background-color:rgb(197, 245, 192);}
+        .bg-pink {background-color:rgb(151, 204, 237);}
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.55rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+                :root {
+            --neon-pink: #ff00ff;
+            --soft-blue: #00ffff;
+            --neon-green: #00ffea;
+            --dark-bg: #0a0a12;
+            --section-bg: rgba(10, 10, 20, 0.9);
+            --nav-bg: rgb(151, 204, 237);
+            --dropdown-bg: rgb(197, 245, 192);
+            --dropdown-item: rgb(149, 183, 224);
+            --dropdown-hover: rgb(141, 210, 240);
+            --dropdown-hover-bg: #d49ba7;
+        }
+
+        /* Reset y estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--dark-bg);
+            color: #e0e0e0;
+            line-height: 1.6;
+            cursor: url('https://cur.cursors-4u.net/games/gam-8/gam758.cur'), auto;
+            overflow-x: hidden;
+        }
+
+        /* Tipografía */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 5px rgba(0, 255, 255, 0.7);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--neon-green);
+            text-decoration: none;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        a:hover {
+            color: rgb(136, 190, 201);
+        }
+/* Wallpaper Hero */
+        .wallpaper {
+            background-image: url('https://wallpaperaccess.com/full/2077663.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .wallpaper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+        }
+
+        .wallpaper-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: var(--neon-green);
+            text-align: center;
+            padding: 1.5rem 3rem;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 4px solid var(--neon-pink);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            animation: glitch 0.3s infinite alternate, neonPulse 1.5s infinite alternate;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* Secciones */
+        section {
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.85);
+            max-width: 80%;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        section:nth-child(odd) {
+            border: 3px solid var(--soft-blue);
+            box-shadow: 0 0 10px var(--soft-blue), 0 0 20px var(--soft-blue);
+        }
+
+        section:nth-child(even) {
+            border: 3px solid var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+        }
+
+        /* Estilos para imágenes */
+        .img-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            filter: brightness(0.9);
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--soft-blue);
+            filter: brightness(1.1);
+            border-color: var(--soft-blue);
+        }
+
+        .section-images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .section-img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            border: 3px solid var(--soft-blue);
+            box-shadow: 0 0 15px var(--soft-blue), 0 0 25px var(--soft-blue);
+            transition: all 0.3s ease;
+            object-fit: cover;
+        }
+
+        .section-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px var(--neon-pink), 0 0 40px var(--neon-pink);
+            border-color: var(--neon-pink);
+        }
+
+        /* Tablas */
+        .tabla-gamer {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: var(--neon-green);
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+            margin: 1.5rem 0;
+        }
+
+        .tabla-gamer th, .tabla-gamer td {
+            border: 2px solid var(--neon-green);
+            padding: 0.75rem;
+        }
+
+        .tabla-gamer th {
+            background-color: #008f63;
+            color: black;
+        }
+
+        .tabla-gamer tr:hover {
+            background-color: var(--neon-green);
+            color: black;
+            transition: 0.3s ease-in-out;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            margin: 0.5rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+        }
+
+        .btn-primary:hover {
+            background-color: #008f63;
+            box-shadow: 0 0 15px var(--neon-green), 0 0 30px var(--neon-green);
+            transform: scale(1.05);
+        }
+
+        .btn-gamer {
+            background-color: var(--soft-blue);
+            color: black;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            border-radius: 8px;
+            border: 3px solid var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--soft-blue);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-gamer:hover {
+            animation: buttonPress 0.3s infinite alternate;
+            box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--soft-blue);
+            transform: scale(1.05);
+        }
+
+        /* Listas */
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        li:hover {
+            color: rgb(136, 190, 201);
+        }
+
+        /* Efectos especiales */
+        .glitch-text {
+            font-size: 2em;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--soft-blue);
+            animation: glitch 0.2s infinite alternate;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .hud-box {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 3px solid var(--neon-pink);
+            padding: 20px;
+            box-shadow: 0 0 15px var(--neon-pink);
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px auto;
+            width: 80%;
+            animation: neonPulse 2s infinite alternate;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes loadingEffect {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px var(--neon-pink), -3px -3px var(--soft-blue); }
+            25% { text-shadow: -3px -3px var(--neon-pink), 3px 3px var(--soft-blue); }
+            50% { text-shadow: 5px 5px var(--neon-pink), -5px -5px var(--soft-blue); }
+            75% { text-shadow: -5px -5px var(--neon-pink), 5px 5px var(--soft-blue); }
+            100% { text-shadow: 3px 3px var(--neon-pink), -3px -3px var(--soft-blue); }
+        }
+
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--soft-blue); }
+            50% { box-shadow: 0 0 15px var(--neon-pink), 0 0 25px var(--soft-blue); }
+            100% { box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--soft-blue); }
+        }
+
+        @keyframes buttonPress {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        /* Sección de botones de videojuegos */
+        .videojuegos-gamer {
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 3px solid var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--soft-blue);
+            border-radius: 10px;
+            max-width: 80%;
+            margin: auto;
+        }
+
+        .botones-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--neon-green);
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--soft-blue);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wallpaper-title {
+                font-size: 2rem;
+                padding: 1rem 1.5rem;
+            }
+
+            section, .videojuegos-gamer, .hud-box {
+                max-width: 95%;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            .section-img {
+                max-width: 100%;
+            }
+
+            .botones-container {
+                gap: 10px;
+            }
+
+            .btn-gamer {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wallpaper-title {
+                font-size: 1.5rem;
+            }
+
+            .btn, .btn-gamer {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+
+    <!--Esta parte es el navbar, de preferencia no lo toquen a menos que sepan que hacen por que ni yo se como arreglar los pedos de esta madre xD-->
+    <div id="root">
+        <header data-bs-theme="dark">
+            <nav class="navbar navbar-expand-md fixed-top bg-pink">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="../Portada/index.html">J-POP</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav_bg-dark">
+                        <ul class="navbar-nav dropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Introduccion/index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Música
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                                <a class="dropdown-item" href="#">Historia</a>
+                                <a class="dropdown-item" href="https://michilopotzli1.github.io/Proyecto/jpopmusica.html">Actualidad</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Videojuegos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                                <a class="dropdown-item" href="#">Actualidad</a>
+                                <a class="dropdown-item" href="../Videojuegos_japoneses/consolas.html">Consolas del Nipon</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Entretenimiento
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                                <a class="dropdown-item" href="../Entretenimiento/Anime/Anime.html">Anime y Mangas</a>
+                                <a class="dropdown-item" href="../Entretenimiento/Cine/Peliculas.html">Peliculas y novelas</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Moda y maquillaje
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                                <a class="dropdown-item" href="../Moda/moda-japonesa.html">Historia</a>
+                                <a class="dropdown-item" href="../Moda/Estilos_actuales.html">Estilos actuales</a>
+                            </div>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            </header>
+            
+            <!--Wallpaper portada con el titulo, usa una seccion aparte asi que no interfiere ni con el navbar ni el texto posterior, usenlo como quieran-->
+            <section class="wallpaper">
+                <h1 class="wallpaper-title">Actualidad de los videojuegos</h1>
+            </section>
+            <script>
+            document.addEventListener("mousemove", (event) => {
+                const title = document.querySelector(".wallpaper-title");
+                const x = (event.clientX / window.innerWidth - 0.5) * 20; // Movimiento horizontal
+                const y = (event.clientY / window.innerHeight - 0.5) * 10; // Movimiento vertical
+
+                title.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            </script>
+
+    <h1 class="glitch-text">¡Bienvenido al mundo gamer!</h1>
+
+
+            <main class="container">
+                <div class="hud-box">
+                    <h2>Historia y Evolución de los Videojuegos Japoneses</h2>
+                    <p>Japón ha sido un epicentro de innovación en la industria del videojuego, desde sus inicios en los años 70 con títulos arcade hasta los mundos abiertos y las narrativas cinematográficas de hoy. Algunas etapas clave en su evolución incluyen:</p>
+                </div>
+        
+                <section class="hidden">
+                    <h3>Orígenes (1970-1980): La Era de los Arcades</h3>
+                    <p>La era de los arcades en Japón durante los años 70 y principios de los 80 fue un período de gran innovación y crecimiento en la industria del videojuego. Aquí tienes más información sobre este fascinante momento:</p>
+                    <h4>El Auge de los Arcades en Japón</h4>
+                    <p>Japón se convirtió en el epicentro de la industria arcade gracias a empresas como Taito, Namco, SEGA y Nintendo, que desarrollaron títulos icónicos y revolucionaron la forma en que las personas interactuaban con los videojuegos.</p>
+                    <div class="img-container">
+                    <img src="https://i1.sndcdn.com/artworks-000380296524-chzw5l-t500x500.jpg" alt="Pacman" class="image">
+                </div>
+                    <h4>Juegos Claves de la Época</h4>
+                    <ul>
+                        <li><b>Space Invaders (1978) - Taito:</b> Este juego marcó el inicio de la fiebre arcade, con mecánicas de disparo y una progresión de dificultad que atrapó a los jugadores.</li>
+                        <li><b>Pac-Man (1980) - Namco:</b> Introdujo un diseño accesible y personajes con inteligencia artificial, convirtiéndose en un fenómeno cultural.</li>
+                        <li><b>Galaxian (1979) - Namco:</b> Evolucionó el género de los shooters espaciales con enemigos que atacaban en patrones más complejos.</li>
+                        <li><b>Donkey Kong (1981) - Nintendo:</b> Presentó a Mario y estableció las bases del género de plataformas.</li>
+                    </ul>
+                    <h4>Impacto Cultural y Tecnologico</h4>
+                    <ul>
+                        <li><b>Expansión de los salones arcade:</b> En Japón, los centros de entretenimiento con máquinas arcade se volvieron extremadamente populares.</li>
+                        <li><b>Avances tecnológicos:</b>Se pasó de gráficos en blanco y negro a color, y se introdujeron mecánicas más sofisticadas.</li>
+                        <li><b>Influencia en la industria:</b> La era arcade sentó las bases para el desarrollo de consolas domésticas y el crecimiento de franquicias icónicas.</li>
+                    </ul>
+
+                </section>
+        
+                <section class="hidden">
+                    <h3>Expansión (1980-1990): Consolas Domésticas</h3>
+                    <p>La década de 1980 marcó un cambio fundamental en la industria del videojuego con la transición de los arcades a las consolas domésticas. Japón lideró esta expansión con empresas como Nintendo y SEGA, que revolucionaron la forma en que las personas jugaban en casa.</p>
+                    <h4>El Auge de las Consolas Domésticas</h4>
+                    <p>Durante este período, las consolas evolucionaron significativamente en términos de hardware, diseño y accesibilidad. Algunos hitos clave incluyen:</p>
+                    <ul>
+                        <li><b>Nintendo Entertainment System (NES) (1983):</b> Lanzado en Japón como Famicom, esta consola redefinió la industria con títulos icónicos como Super Mario Bros. y The Legend of Zelda.</li>
+                        <li><b>SEGA Master System - 1985:</b> Competencia directa de Nintendo, con juegos como Alex Kidd in Miracle World y Phantasy Star.</li>
+                        <li><b>Atari 2600 - 1982:</b> Se introdujeron controles más cómodos y funcionales.</li>
+                    </ul>
+                    <h4>Innovaciones Tecnológicas</h4>
+                    <ul>
+                        <li><b>Gráficos mejorados:</b> Se pasó de los 8 bits a los 16 bits, permitiendo mayor detalle visual.</li>
+                        <li><b>Cartuchos intercambiables:</b> Facilitó la expansión de bibliotecas de juegos sin necesidad de comprar nuevas consolas.</li>
+                        <li><b>Mandos ergonómicos:</b> Aunque su lanzamiento inicial fue en los 70, siguió siendo relevante en los 80 con juegos como Pac-Man y Space Invaders.</li>
+                    </ul>
+                    <h4>Impacto Cultural y Tecnologico</h4>
+                    <ul>
+                        <li><b>Expansión global:</b>Japón dominó el mercado, pero las consolas llegaron a hogares de todo el mundo.</li>
+                        <li><b>Nacimiento de franquicias:</b>Super Mario, Final Fantasy y Metroid surgieron en esta época.</li>
+                        <li><b>Competencia entre empresas:</b> Nintendo y SEGA protagonizaron una de las rivalidades más famosas de la industria.</li>
+                    </ul>
+                <div class="section-images">
+                    <img src="https://fyre.cdn.sewest.net/ff-xvi/637cf9194dc880a0db62c591/hero_bg-tT8XHFrO5.jpg?quality=85&width=3840" alt="Final fantasy" class="section-img">
+                </div>
+                </section>
+        
+                <section class="hidden">
+                    <h3>Avances Tecnológicos (1990-2000): Juegos en 3D y RPGs Cinematográficos</h3>
+                    <p>La década de 1990 fue un punto de inflexión en la industria del videojuego, con avances tecnológicos que permitieron la transición de los gráficos en 2D a los entornos tridimensionales y la evolución de los RPGs cinematográficos.</p>
+                    <h4>El Salto a los Juegos en 3D</h4>
+                    <p>El desarrollo de hardware más potente, como la PlayStation (1994) y la Nintendo 64 (1996), permitió la creación de mundos tridimensionales más inmersivos. Algunos hitos clave incluyen:</p>
+                    <ul>
+                        <li><b>Super Mario 64 (1996):</b> Revolucionó el diseño de juegos en 3D con su libertad de movimiento y exploración.</li>
+                        <li><b>Tomb Raider (1996):</b> Introdujo mecánicas de aventura y plataformas en un entorno tridimensional.</li>
+                        <li><b>Quake (1996):</b> Popularizó los shooters en primera persona con gráficos completamente en 3D.</li>
+                    </ul>
+                    <h4>RPGs Cinematográficos</h4>
+                    <p>Los RPGs comenzaron a incorporar narrativas más profundas y elementos cinematográficos, con escenas pre-renderizadas y música orquestal. Algunos títulos icónicos fueron:</p>
+                    <ul>
+                        <li><b>Final Fantasy VII (1997):</b> Marcó un antes y un después con su historia emotiva y cinemáticas impresionantes.</li>
+                        <li><b>Chrono Cross (1999):</b> Secuela de Chrono Trigger, con una narrativa compleja y múltiples finales.</li>
+                        <li><b>Baldur’s Gate (1998):</b> Introdujo mecánicas de rol más profundas y una historia ramificada.</li>
+                    </ul>
+                    <h4>Impacto en la Industria</h4>
+                    <ul>
+                        <li><b>Expansión del mercado:</b> Los juegos en 3D y los RPGs cinematográficos atrajeron a una audiencia más amplia.</li>
+                        <li><b>Avances en narrativa:</b> Se empezaron a utilizar técnicas cinematográficas para contar historias más envolventes.</li>
+                        <li><b>Mayor realismo:</b> La mejora en gráficos y sonido permitió experiencias más inmersivas.</li>
+                    </ul>
+                     <div class="section-images">
+                    <img src="https://image.api.playstation.com/vulcan/ap/rnd/202402/0221/57e41521e1e91f38cf6ce3ce64cc2116522c302a30c1ec6c.png" alt="Tomb Raider" class="section-img">
+                </div>
+                </section>
+        
+                <section class="hidden">
+                    <h3>Actualidad (2000-presente): Mundo Abierto, Inteligencia Artificial y Realidad Virtual</h3>
+                    <p>Desde el año 2000 hasta la actualidad, la industria del videojuego ha experimentado avances tecnológicos impresionantes, con el desarrollo de mundos abiertos, inteligencia artificial avanzada y realidad virtual.</p>
+                    <h4>Mundos Abiertos</h4>
+                    <p>Los juegos de mundo abierto han evolucionado enormemente, ofreciendo vastos entornos con libertad de exploración. Algunos hitos incluyen:</p>
+                    <ul>
+                        <li><b>Grand Theft Auto III (2001):</b> Popularizó los mundos abiertos en 3D con una jugabilidad no lineal.</li>
+                        <li><b>The Elder Scrolls V: Skyrim (2011):</b> Introdujo un mundo expansivo con misiones dinámicas y exploración profunda.</li>
+                        <li><b>The Legend of Zelda: Breath of the Wild (2017):</b> *Redefinió la interacción con el entorno y la física en los juegos de mundo abierto.</li>
+                    </ul>
+                    <h4>Mundos Abiertos</h4>
+                    <p> La IA ha mejorado la experiencia de juego con NPCs más realistas y sistemas adaptativos:</p>
+                    <ul>
+                        <li><b>F.E.A.R. (2005):</b> Introdujo enemigos con IA avanzada que reaccionaban estratégicamente.</li>
+                        <li><b>Alien: Isolation (2014):</b> Presentó una IA impredecible que hacía al enemigo más aterrador.</li>
+                        <li><b>Red Dead Redemption 2 (2018):</b> Implementó NPCs con rutinas diarias y respuestas dinámicas a las acciones del jugador.</li>
+                    </ul>
+                    <h4>Mundos Abiertos</h4>
+                    <p>La VR ha revolucionado la inmersión en los videojuegos, permitiendo experiencias más envolventes:</p>
+                    <ul>
+                        <li><b>Half-Life: Alyx (2020):</b> Considerado uno de los mejores juegos de VR, con mecánicas innovadoras.</li>
+                        <li><b>Elite Dangerous VR:</b> Ofrece una experiencia de exploración espacial en un mundo abierto.</li>
+                        <li><b>Skyrim VR:</b> Adaptación del clásico RPG con total inmersión en su mundo abierto.</li>
+                    </ul>
+                <div class="section-images">
+                    <img src="https://media.vandal.net/m/34903/grand-theft-auto-iii-2015127132946_11.jpg" alt="Grand Theft auto" class="section-img">
+                </div>
+                </section>
+                
+<section class="hidden">
+<section class="impacto-videojuegos">
+    <h2>Impacto Global de los Videojuegos</h2>
+    <p>Los videojuegos han trascendido su papel como entretenimiento para convertirse en un fenómeno cultural con <strong>adaptaciones cinematográficas</strong>, <strong>eventos de esports</strong> y una <strong>influencia visual</strong> que ha moldeado la industria.</p>
+
+    <h3>Adaptaciones Cinematográficas y Televisivas</h3>
+    <p>Las franquicias de videojuegos han inspirado <strong>películas y series</strong> que han llevado sus historias a nuevas audiencias. <i>Pokémon</i>, con su serie animada y películas como <i>Detective Pikachu</i>, ha sido un referente en la expansión multimedia. <i>Sonic the Hedgehog</i> ha logrado éxito con sus películas live-action, mientras que <i>Resident Evil</i> ha generado múltiples adaptaciones cinematográficas y una serie en Netflix.</p>
+
+    <h3> Eventos de Esports y Competencias Globales</h3>
+    <p>Los <strong>esports</strong> han convertido los videojuegos en un deporte competitivo con torneos internacionales. Juegos como <i>Street Fighter</i> y <i>Tekken</i> han sido pilares en la escena de peleas, con eventos como <strong>EVO Championship Series</strong> atrayendo a miles de jugadores y espectadores. Además, títulos como <i>League of Legends</i> y <i>Dota 2</i> han llevado los esports a un nivel profesional con premios millonarios.</p>
+
+    <h3>Influencia del Estilo Visual Japonés</h3>
+    <p>El <strong>arte japonés</strong> ha influenciado profundamente la estética de los videojuegos, desde los diseños de personajes hasta la narrativa visual. El <i>manga</i> y el <i>anime</i> han inspirado títulos como <i>Persona 5</i>, <i>Final Fantasy</i> y <i>The Legend of Zelda</i>, estableciendo un estándar visual que se ha expandido a juegos occidentales.</p>
+
+    <h3>Expansión Cultural y Social</h3>
+    <p>Los videojuegos han generado <strong>comunidades globales</strong>, conectando jugadores de todo el mundo a través de plataformas en línea. Además, han influenciado la moda, la música y el diseño, con marcas colaborando en ediciones especiales inspiradas en títulos icónicos.</p>
+
+    <p>El impacto de los videojuegos sigue creciendo, redefiniendo la cultura digital y expandiendo su influencia en múltiples industrias. </p>
+                <div class="section-images">
+                    <img src="https://m.media-amazon.com/images/M/MV5BMzE0ZDU1MzQtNTNlYS00YjNlLWE2ODktZmFmNDYzMTBlZTBmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Pokémon serie" class="section-img">
+                </div>
+</section>
+
+<section class="hidden">
+        <h2>Tendencias Futuras en los Videojuegos</h2>
+    <p>Los videojuegos han evolucionado y las tendencias futuras prometen transformar aún más la industria.</p>
+
+    <h3>Accesibilidad</h3>
+    <p>La accesibilidad se ha convertido en una prioridad, con juegos que ofrecen opciones avanzadas para jugadores con discapacidades. <strong>The Last of Us Part II</strong> ha implementado mejoras en audio, controles y visualización para hacerlo más inclusivo.</p>
+
+    <h3>Cloud Gaming</h3>
+    <p>El <strong>Cloud Gaming</strong> está revolucionando la manera en que se juega, permitiendo acceder a títulos sin necesidad de hardware costoso. Servicios como <i>PlayStation Now</i>, <i>Xbox Cloud Gaming</i> y <i>GeForce Now</i> están expandiendo su catálogo y ofreciendo experiencias de alta calidad en la nube.</p>
+
+    <h3>Inteligencia Artificial</h3>
+    <p>La <strong>Inteligencia Artificial</strong> está mejorando la inmersión en los videojuegos, creando NPCs con respuestas más naturales y mundos que reaccionan dinámicamente a las decisiones del jugador. <strong>Red Dead Redemption 2</strong> ha llevado la IA a un nuevo nivel, con personajes que siguen rutinas diarias y cambian sus reacciones según las acciones del usuario.</p>
+
+    <h3>Metaverso</h3>
+    <p>El <strong>Metaverso</strong> está cobrando fuerza con títulos como <i>Roblox</i> y <i>Fortnite</i>, que han evolucionado más allá del juego para convertirse en espacios sociales digitales donde los jugadores pueden asistir a conciertos virtuales, eventos en vivo y experiencias interactivas.</p>
+
+    <h3>Realidad Virtual y Aumentada</h3>
+    <p>La <strong>Realidad Virtual y Aumentada</strong> ha cambiado la forma en que se experimentan los videojuegos. Con títulos como <i>Half-Life: Alyx</i> y <i>Skyrim VR</i>, los jugadores pueden sumergirse por completo en los mundos virtuales con un nivel de interacción nunca antes visto.</p>
+
+    <h3>Juegos Cozy</h3>
+    <p>Además, los <strong>juegos cozy</strong> han ganado popularidad, ofreciendo experiencias más relajantes y centradas en la creatividad y el bienestar. Juegos como <i>Animal Crossing</i> y <i>Botany Manor</i> están diseñados para brindar tranquilidad y fomentar la exploración sin presión competitiva.</p>
+    
+
+                    <div class="section-images">
+                    <img src="https://i.blogs.es/ad1314/mhbyl4nzgrf6xcxdhsdfbhofwe/1366_2000.jpeg" alt="The Last of Us II" class="section-img">
+                </div>
+</section>
+
+
+
+                
+<section class="hidden">
+ <h2>Historia de los JRPG: Evolución y Legado</h2>
+    <p>Los <strong>JRPG</strong> (Japanese Role-Playing Games) han sido una piedra angular en la industria de los videojuegos, evolucionando desde sus raíces en los años 80 hasta convertirse en experiencias narrativas profundas y estratégicas.</p>
+
+    <h3>🔹 Orígenes y Primeros Éxitos</h3>
+    <p>Los JRPG nacieron con títulos como <strong>Dragon Quest (1986)</strong> y <strong>Final Fantasy (1987)</strong>, que establecieron mecánicas clave como el <i>combate por turnos</i>, la <i>progresión de personajes</i> y la <i>exploración de mundos fantásticos</i>.</p>
+
+    <h3>🔹 Expansión y Popularidad Global</h3>
+    <p>Durante los años 90, los JRPG alcanzaron su auge con juegos como <strong>Chrono Trigger (1995)</strong> y <strong>Final Fantasy VII (1997)</strong>, que introdujeron <i>gráficos avanzados</i>, <i>cinemáticas impactantes</i> y <i>tramas más maduras</i>.</p>
+
+    <h3>🔹 Innovaciones Modernas</h3>
+    <p>Hoy en día, los JRPG han evolucionado con mecánicas más dinámicas, como el <i>combate en tiempo real</i> en <strong>Final Fantasy XVI</strong> y la <i>exploración de mundo abierto</i> en <strong>Xenoblade Chronicles</strong>.</p>
+
+    <h3>🔹 Características Claves de los JRPG</h3>
+    <ul>
+        <li><strong>Narrativas profundas:</strong> Historias que exploran temas como la amistad, el sacrificio y el destino.</li>
+        <li><strong>Personajes memorables:</strong> Protagonistas con desarrollo emocional y relaciones complejas.</li>
+        <li><strong>Combate estratégico:</strong> Desde turnos clásicos hasta sistemas híbridos de acción.</li>
+        <li><strong>Estética anime:</strong> Diseños vibrantes inspirados en el manga y la animación japonesa.</li>
+    </ul>
+
+    <p>Los JRPG siguen siendo un género influyente, adaptándose a nuevas tecnologías sin perder su esencia.</p>
+</section>
+
+
+                <section class="hidden">
+                    <h2>Comparación de Géneros Más Jugados</h2>
+                    <table class="tabla-gamer">
+                        <thead>
+                            <tr>
+                                <th>Género</th>
+                                <th>Ejemplos de Juegos</th>
+                                <th>Popularidad Global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>JRPG</td>
+                                <td>Final Fantasy XVI, Persona 5 Royal, Xenoblade Chronicles</td>
+                                <td>Alta</td>
+                            </tr>
+                            <tr>
+                                <td>Acción/Aventura</td>
+                                <td>Elden Ring, Ghost of Tsushima, Zelda: Breath of the Wild</td>
+                                <td>Muy Alta</td>
+                            </tr>
+                            <tr>
+                                <td>Pelea</td>
+                                <td>Tekken 8, Street Fighter 6, Super Smash Bros.</td>
+                                <td>Alta</td>
+                            </tr>
+                            <tr>
+                                <td>Hack and Slash</td>
+                                <td>Bayonetta 3, Devil May Cry 5, Nier: Automata</td>
+                                <td>Moderada</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="videojuegos-gamer">
+    <h2 class="glitch-text">Comparación de Géneros Más Jugados</h2>
+    <div class="botones-container">
+        <a href="https://www.finalfantasyxvi.com/" class="btn-gamer" target="_blank">Final Fantasy XVI (JRPG)</a>
+        <a href="https://atlus.com/persona5/" class="btn-gamer" target="_blank">Persona 5 Royal (JRPG)</a>
+        <a href="https://www.nintendo.com/store/products/xenoblade-chronicles-definitive-edition-switch/" class="btn-gamer" target="_blank">Xenoblade Chronicles (JRPG)</a>
+
+        <a href="https://www.eldenring.com/" class="btn-gamer" target="_blank">Elden Ring (Acción/Aventura)</a>
+        <a href="https://www.playstation.com/en-us/games/ghost-of-tsushima/" class="btn-gamer" target="_blank">Ghost of Tsushima (Acción/Aventura)</a>
+        <a href="https://www.zelda.com/breath-of-the-wild/" class="btn-gamer" target="_blank">Zelda: Breath of the Wild (Acción/Aventura)</a>
+
+        <a href="https://www.bandainamcoent.com/games/tekken-8" class="btn-gamer" target="_blank">Tekken 8 (Pelea)</a>
+        <a href="https://www.streetfighter.com/6/" class="btn-gamer" target="_blank">Street Fighter 6 (Pelea)</a>
+        <a href="https://www.smashbros.com/" class="btn-gamer" target="_blank">Super Smash Bros. (Pelea)</a>
+
+        <a href="https://www.nintendo.com/store/products/bayonetta-3-switch/" class="btn-gamer" target="_blank">Bayonetta 3 (Hack and Slash)</a>
+        <a href="https://www.capcom.com/devilmaycry5/" class="btn-gamer" target="_blank">Devil May Cry 5 (Hack and Slash)</a>
+        <a href="https://nierautomata.square-enix-games.com/" class="btn-gamer" target="_blank">Nier: Automata (Hack and Slash)</a>
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".hidden");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                entry.target.classList.remove("hidden");
+            } else {
+                entry.target.classList.remove("visible");
+                entry.target.classList.add("hidden");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+});
+
+
+
+// Mantener la animación CSS en el documento
+const style = document.createElement("style");
+style.innerHTML = `
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: scale(0.9); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+    .image {
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    }
+`;
+document.head.appendChild(style);
+document.addEventListener("mousemove", (event) => {
+    const elements = document.querySelectorAll("h1, h2, h3");
+    elements.forEach(element => {
+        const x = (event.clientX / window.innerWidth - 0.5) * 15;
+        const y = (event.clientY / window.innerHeight - 0.5) * 10;
+        element.style.transform = `translate(${x}px, ${y}px)`;
+    });
+});
+    document.addEventListener("mousemove", (event) => {
+    const x = (event.clientX / window.innerWidth) * 10;
+    const y = (event.clientY / window.innerHeight) * 10;
+    document.querySelector(".wallpaper").style.backgroundPosition = `${x}px ${y}px`;
+});
+
+</script>
+
+       
+        <!--El pie de pagina, aqui va la informacion de la pagina, por ahora no hay cambios dejenlo asi-->
+        <footer class="bg-dark text-white text-center py-3">
+            <div>
+                <p><a href="../Contactos/contactos.html" class="text-white">Contacto</a> | <a href="../Referencias/referencias.html" class="text-white">Referencias</a></p>
+            </div>
+        </footer>
+
+
+    </div>
+</body>
