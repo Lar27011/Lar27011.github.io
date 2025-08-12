@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consolas Japonesas</title>
+    <title>J-POP Universe</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+    --neon-pink: #ff00ff;
+    --neon-green: #00ffea;
+    --soft-blue: #76c7c0;
+    --dark-bg: #1a1a1a;
+}
+
                 li:hover {color:rgb(136, 190, 201); }
         button:hover {background-color:rgb(153, 197, 255);}
         li {margin-bottom: 10px;}
@@ -16,6 +24,14 @@
         .dropdown-item:hover { color:rgb(141, 210, 240); background-color: #d49ba7;}
         .dropdown-menu {background-color:rgb(197, 245, 192);}
         .bg-pink {background-color:rgb(151, 204, 237);}
+.dropdown-menu {
+    background-color: var(--soft-blue);
+    box-shadow: 0 0 15px var(--neon-pink);
+}
+        .bg-pink {
+    background-color: var(--dark-bg) !important;
+}
+
 
         .nav-scroller {
             position: relative;
@@ -23,6 +39,35 @@
             height: 2.55rem;
             overflow-y: hidden;
         }
+/* Navbar con efecto neon mejorado */
+.navbar {
+    background-color: var(--dark-bg); /* Fondo oscuro */
+    border-bottom: 3px solid var(--neon-pink); /* Borde con efecto neon */
+    box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-green), 0 0 60px var(--soft-blue); /* Glow más fuerte */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Efectos de texto luminoso */
+.navbar-brand, .nav-link {
+    color: var(--neon-green) !important;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 8px var(--neon-pink), 0 0 16px var(--soft-blue);
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+/* Efecto animado al pasar el mouse */
+.nav-link:hover {
+    color: var(--neon-pink) !important;
+    text-shadow: 0 0 15px var(--neon-green), 0 0 30px var(--soft-blue), 0 0 45px var(--neon-pink);
+    animation: flicker 0.3s infinite alternate;
+}
+
+/* Animación sutil de parpadeo para mayor inmersión */
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
 
         .nav-scroller .nav {
             display: flex;
@@ -345,46 +390,49 @@ body {
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav_bg-dark">
-                        <ul class="navbar-nav dropdown">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Introduccion/index.html">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Música
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
-                                <a class="dropdown-item" href="#">Historia</a>
-                                <a class="dropdown-item" href="https://michilopotzli1.github.io/Proyecto/jpopmusica.html">Actualidad</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Videojuegos
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
-                                <a class="dropdown-item" href="../Videojuegos_japoneses/Videojuegos_japoneses.html">Actualidad</a>
-                                <a class="dropdown-item" href="#">Consolas del Nipon</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Entretenimiento
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
-                                <a class="dropdown-item" href="../Entretenimiento/Anime/Anime.html">Anime y Mangas</a>
-                                <a class="dropdown-item" href="../Entretenimiento/Cine/Peliculas.html">Peliculas y novelas</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Moda y maquillaje
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                    <ul class="navbar-nav dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Introduccion/index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Música
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                            <a class="dropdown-item" href="../jpopmusica.html">Historia</a>
+                            <a class="dropdown-item" href="../actualidadjpop.html">Actualidad</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Videojuegos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                            <a class="dropdown-item" href="../Videojuegos_japoneses/Videojuegos_japoneses.html">Actualidad</a>
+                            <a class="dropdown-item" href="../Videojuegos_japoneses/consolas.html">Consolas del Nipon</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Entretenimiento
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
+                            <a class="dropdown-item" href="../Entretenimiento/Anime/Anime.html">Anime y Mangas</a>
+                            <a class="dropdown-item" href="../Entretenimiento/Cine/Peliculas.html">Peliculas y novelas</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Moda y maquillaje
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-top: 0px">
                                 <a class="dropdown-item" href="../Moda/moda-japonesa.html">Historia</a>
                                 <a class="dropdown-item" href="../Moda/Estilos_actuales.html">Estilos actuales</a>
                             </div>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="../redesociales.html">Redes Sociales</a>
+                     </li>
                         </ul>
                     </div>
                 </div>
@@ -581,8 +629,12 @@ body {
     
 </main>
 
-<footer>
-    <p>© 2025 Consolas Japonesas | Todos los derechos reservados</p>
+  <footer class="bg-dark text-white text-center py-3">
+    <div>
+        <p class="float-end"><a href="#">Back to top</a></p>
+        <p><a href="../Contactos/contactos.html" class="text-white">Contacto</a> | <a href="../Referencias/referencias.html" class="text-white">Referencias</a></p>
+        <p>&copy; 2025 J-POP Universe. Todos los derechos reservados.</p>
+    </div>
 </footer>
 
 
