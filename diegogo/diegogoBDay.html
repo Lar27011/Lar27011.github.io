@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎇 ¿Eres igual de NyE que el cumpleañero? ✨</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts: Poppins & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            nye: {
+              gold: '#ffd700',
+              pink: '#ff2d75',
+              darkpink: '#d81b60',
+              purple: '#9c27b0',
+              neon: '#00f7ff',
+              bgdark: '#0d0718',
+              carddark: '#1a102f'
+            }
+          },
+          animation: {
+            'float-slow': 'float 4s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2s infinite',
+            'spin-slow': 'spin 12s linear infinite',
+            'bounce-short': 'bounceShort 0.5s ease',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { filter: 'drop-shadow(0 0 15px rgba(255, 45, 117, 0.6))' },
+              '50%': { filter: 'drop-shadow(0 0 35px rgba(255, 215, 0, 0.9))' },
+            },
+            bounceShort: {
+              '0%, 100%': { transform: 'scale(1)' },
+              '50%': { transform: 'scale(1.15)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom utility animations and scrollbars */
+    .bg-radial-glow {
+      background: radial-gradient(circle at center, rgba(156, 39, 176, 0.25) 0%, rgba(13, 7, 24, 0.98) 70%, #080311 100%);
+    }
+    
+    .floating-kiss {
+      position: absolute;
+      pointer-events: none;
+      animation: floatUpAndFade 1.2s forwards cubic-bezier(0.1, 0.8, 0.3, 1);
+      z-index: 50;
+      font-weight: 800;
+      user-select: none;
+    }
+
+    @keyframes floatUpAndFade {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(0.6) rotate(0deg);
+      }
+      50% {
+        opacity: 0.9;
+        transform: translateY(-50px) scale(1.3) rotate(random(-15deg, 15deg));
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-110px) scale(1.6) rotate(20deg);
+      }
+    }
+
+    /* Custom Glassmorphism */
+    .glass-card {
+      background: rgba(26, 16, 47, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    
+    .glass-card-hover:hover {
+      border-color: rgba(255, 45, 117, 0.45);
+      box-shadow: 0 10px 30px -10px rgba(255, 45, 117, 0.3);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0d0718;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #391e66;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ff2d75;
+    }
+  </style>
+</head>
+<body class="h-full bg-nye-bgdark text-gray-100 font-sans selection:bg-nye-pink selection:text-white flex flex-col min-h-screen overflow-x-hidden">
+
+  <!-- Dynamic ambient glowing orbs in background -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute top-1/2 -right-32 w-96 h-96 bg-nye-pink/20 rounded-full blur-3xl animate-pulse" style="animation-duration: 6s;"></div>
+    <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl animate-pulse" style="animation-duration: 8s;"></div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Navigation / Top Bar -->
+  <header class="relative z-10 w-full px-4 sm:px-8 py-4 flex items-center justify-between border-b border-white/5 bg-nye-bgdark/70 backdrop-blur-md">
+    <div class="flex items-center gap-2 cursor-pointer transition-transform hover:scale-105" onclick="app.navigate('home')">
+      <span class="text-2xl">✨</span>
+      <span class="font-display font-black text-xl sm:text-2xl tracking-tight bg-gradient-to-r from-nye-gold via-pink-400 to-nye-neon bg-clip-text text-transparent">
+        NyE Special Birthday
+      </span>
+    </div>
+    
+    <div class="flex items-center gap-2">
+      <!-- Sound toggle button -->
+      <button id="audio-toggle-btn" onclick="app.toggleSound()" class="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-300 border border-white/10 flex items-center justify-center text-sm" title="Activar/Desactivar Sonido">
+        <i data-lucide="volume-2" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Settings button -->
+      <button onclick="app.openConfigModal()" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-purple-900/40 hover:bg-purple-800/60 border border-purple-500/30 text-purple-200 text-xs sm:text-sm font-semibold transition shadow-sm hover:shadow-purple-500/20" title="Editar Preguntas y Configuración">
+        <i data-lucide="settings" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">Editar JSON</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="relative z-10 flex-1 flex items-center justify-center p-4 sm:p-6 w-full max-w-5xl mx-auto">
+    
+    <!-- VIEW 1: HOME SCREEN -->
+    <section id="view-home" class="w-full text-center flex flex-col items-center py-6 sm:py-10">
+      
+      <!-- Sparkle badges -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-amber-500/10 border border-pink-500/30 text-pink-300 text-xs sm:text-sm font-semibold mb-6 animate-pulse">
+        <i data-lucide="sparkles" class="w-4 h-4 text-nye-gold"></i>
+        <span>¡Edición Oficial de Cumpleaños!</span>
+        <i data-lucide="party-popper" class="w-4 h-4 text-pink-400"></i>
+      </div>
+
+      <!-- Main Animated Title -->
+      <h1 class="font-display font-black text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight sm:leading-tight mb-4 max-w-3xl drop-shadow-lg">
+        🎇 ¿Eres igual de <span class="bg-gradient-to-r from-yellow-300 via-pink-500 to-cyan-400 bg-clip-text text-transparent underline decoration-pink-500/60 decoration-wavy decoration-2 sm:decoration-4">NyE</span> que el cumpleañero? ✨
+      </h1>
+
+      <p class="text-gray-300 text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed font-light">
+        Descubre si compartes la misma vibra cósmica, el nivel de drama, el flow fiestero o si solo viniste por el pastel y los besos. ¡Elige tu destino!
+      </p>
+
+      <!-- The 2 Main Action Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
+        
+        <!-- Option 1: Kiss Clicker (Sensual Red/Pink Glamour) -->
+        <div class="group relative rounded-3xl p-1 bg-gradient-to-b from-rose-500 via-nye-pink to-purple-600 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(255,45,117,0.55)] cursor-pointer" onclick="app.navigate('clicker')">
+          <div class="h-full bg-nye-carddark/95 backdrop-blur-xl rounded-[22px] p-6 sm:p-8 flex flex-col items-center justify-between text-center relative overflow-hidden">
+            
+            <!-- Glow circle -->
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-pink-500/20 rounded-full blur-2xl group-hover:bg-pink-500/40 transition"></div>
+
+            <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-pink-600 to-rose-400 flex items-center justify-center text-4xl shadow-lg shadow-pink-500/30 mb-4 animate-bounce-short">
+              💋
+            </div>
+
+            <div>
+              <span class="text-xs uppercase font-bold tracking-widest text-pink-400">Modo Afecto Infinito</span>
+              <h2 class="text-xl sm:text-2xl font-bold font-display text-white mt-1 mb-2">
+                Yo me beso al cumpleañero
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-300 mb-6 font-light">
+                ¡Demuestra tu amor con ráfagas de besos, desbloquea labiales mágicos y sube tu multiplicador de cariño!
+              </p>
+            </div>
+
+            <button class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-nye-darkpink text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg shadow-rose-600/40 group-hover:brightness-110 transition">
+              <span>💋 Entrar a Besar</span>
+              <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Option 2: Trivia NyE (Cool Game/Test Aesthetic) -->
+        <div class="group relative rounded-3xl p-1 bg-gradient-to-b from-purple-500 via-indigo-500 to-nye-neon transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(0,247,255,0.45)] cursor-pointer" onclick="app.navigate('trivia')">
+          <div class="h-full bg-nye-carddark/95 backdrop-blur-xl rounded-[22px] p-6 sm:p-8 flex flex-col items-center justify-between text-center relative overflow-hidden">
+            
+            <!-- Glow circle -->
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-indigo-500/20 rounded-full blur-2xl group-hover:bg-indigo-500/40 transition"></div>
+
+            <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center text-4xl shadow-lg shadow-purple-500/30 mb-4 animate-bounce-short">
+              🧠
+            </div>
+
+            <div>
+              <span class="text-xs uppercase font-bold tracking-widest text-indigo-400">Test de Afinidad Oficial</span>
+              <h2 class="text-xl sm:text-2xl font-bold font-display text-white mt-1 mb-2">
+                Probemos mi nivel NyE
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-300 mb-6 font-light">
+                Responde 10 preguntas cruciales sobre gustos, hábitos y momentos épicos para calcular tu porcentaje de alma gemela.
+              </p>
+            </div>
+
+            <button class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg shadow-purple-600/40 group-hover:brightness-110 transition">
+              <span>🚀 Iniciar Trivia NyE</span>
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Tips & LocalStorage Notice -->
+      <div class="mt-12 text-xs text-gray-400 flex items-center justify-center gap-2">
+        <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-purple-400"></i>
+        <span>¿Quieres personalizar las 10 preguntas o la foto? Usa el botón <strong class="text-purple-300">"Editar JSON"</strong> arriba a la derecha.</span>
+      </div>
+    </section>
+
+    <!-- VIEW 2: KISS CLICKER ("Yo me beso al cumpleañero") -->
+    <section id="view-clicker" class="w-full hidden flex-col items-center max-w-4xl py-2">
+      
+      <!-- Clicker Header -->
+      <div class="w-full flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+        <button onclick="app.navigate('home')" class="flex items-center gap-2 text-sm text-gray-300 hover:text-white px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver al Menú
+        </button>
+
+        <div class="flex items-center gap-2 text-xs sm:text-sm font-semibold text-pink-300 bg-pink-500/10 border border-pink-500/20 px-3 py-1.5 rounded-full">
+          <span>Multiplicador:</span>
+          <span id="clicker-multiplier-badge" class="text-nye-gold font-bold">x1.0</span>
+        </div>
+      </div>
+
+      <!-- Clicker Grid: Interactive Person & Upgrades -->
+      <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left / Center: The Kissing Subject -->
+        <div class="lg:col-span-7 flex flex-col items-center glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+          
+          <div class="text-center mb-4">
+            <span class="text-xs uppercase tracking-widest text-pink-400 font-bold">Contador de Besos</span>
+            <div class="flex items-center justify-center gap-2 my-1">
+              <span class="text-4xl sm:text-6xl font-black font-display text-transparent bg-gradient-to-r from-pink-400 via-rose-300 to-nye-gold bg-clip-text" id="kiss-counter">0</span>
+              <span class="text-3xl sm:text-4xl animate-pulse">💋</span>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-300">
+              <span id="kisses-per-sec">0</span> besos/segundo automáticos
+            </p>
+          </div>
+
+          <!-- Clickable Avatar Container -->
+          <div id="kiss-target-container" class="relative my-4 cursor-pointer select-none group touch-manipulation">
+            <!-- Glow background circle -->
+            <div class="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full blur-xl opacity-60 group-hover:opacity-100 transition duration-300"></div>
+            
+            <!-- Avatar Frame -->
+            <div id="kiss-avatar-frame" class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 shadow-2xl transition-transform active:scale-95 duration-100 flex items-center justify-center overflow-hidden">
+              <img id="clicker-avatar-img" 
+                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
+                   alt="Cumpleañero" 
+                   class="w-full h-full object-cover rounded-full pointer-events-none transition-transform duration-200 group-hover:scale-105"
+                   onerror="this.src='https://placehold.co/400x400/9c27b0/ffffff?text=Cumplea%C3%B1ero+NyE'" />
+            </div>
+
+            <!-- Tap Indicator overlay -->
+            <div class="absolute -bottom-2 inset-x-0 flex justify-center pointer-events-none">
+              <span class="bg-rose-600/90 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg border border-pink-300/40 animate-pulse">
+                ¡Toca aquí para besar! 💋
+              </span>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-400 mt-4 text-center">
+            Tip: Puedes cambiar la foto del cumpleañero en el editor JSON arriba a la derecha.
+          </p>
+        </div>
+
+        <!-- Right: Store / Upgrades -->
+        <div class="lg:col-span-5 flex flex-col gap-3 w-full">
+          <div class="flex items-center justify-between px-2">
+            <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-5 h-5 text-nye-gold"></i>
+              Tienda de Cariñitos
+            </h3>
+            <span class="text-xs text-pink-400 font-semibold">Mejoras</span>
+          </div>
+
+          <!-- Upgrades List -->
+          <div id="upgrades-list" class="flex flex-col gap-3 max-h-[460px] overflow-y-auto pr-1">
+            <!-- Dynamic Upgrades rendered via JS -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VIEW 3: TRIVIA NYE (10 Questions & Interactive Stepper) -->
+    <section id="view-trivia" class="w-full hidden flex-col items-center max-w-2xl py-2">
+      
+      <!-- Quiz Header / Back -->
+      <div class="w-full flex items-center justify-between mb-4 pb-2 border-b border-white/10">
+        <button onclick="app.navigate('home')" class="flex items-center gap-2 text-xs sm:text-sm text-gray-300 hover:text-white px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Salir de la trivia
+        </button>
+        <span class="text-xs font-semibold text-purple-300 bg-purple-950/60 border border-purple-500/30 px-3 py-1 rounded-full">
+          Test de Compatibilidad NyE
+        </span>
+      </div>
+
+      <!-- Main Trivia Card -->
+      <div class="w-full glass-card rounded-3xl p-6 sm:p-8 flex flex-col relative overflow-hidden shadow-2xl">
+        
+        <!-- Progress Bar & Question Count -->
+        <div class="w-full mb-6">
+          <div class="flex justify-between items-center text-xs sm:text-sm font-semibold mb-2">
+            <span class="text-purple-300" id="quiz-question-index-badge">Pregunta 1 de 10</span>
+            <span class="text-nye-gold font-bold" id="quiz-score-badge">Aciertos: 0</span>
+          </div>
+          <div class="w-full bg-white/10 h-2.5 rounded-full overflow-hidden">
+            <div id="quiz-progress-bar" class="bg-gradient-to-r from-pink-500 via-purple-500 to-nye-neon h-full w-[10%] transition-all duration-400"></div>
+          </div>
+        </div>
+
+        <!-- Question Prompt -->
+        <div class="min-h-[90px] flex items-center justify-center text-center my-2">
+          <h2 id="quiz-question-text" class="text-lg sm:text-2xl font-bold font-display text-white leading-snug">
+            Cargando pregunta...
+          </h2>
+        </div>
+
+        <!-- Options Container -->
+        <div id="quiz-options-container" class="grid grid-cols-1 gap-3 my-4">
+          <!-- Rendered dynamically by JS -->
+        </div>
+
+        <!-- Feedback & Next Button Area -->
+        <div id="quiz-feedback-box" class="hidden mt-4 p-4 rounded-2xl bg-white/5 border border-white/10 text-center flex-col items-center animate-fade-in">
+          <p id="quiz-feedback-msg" class="text-sm font-medium mb-3"></p>
+          <button id="quiz-next-btn" onclick="app.nextQuestion()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-sm hover:brightness-110 transition shadow-lg flex items-center gap-2">
+            <span>Siguiente Pregunta</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VIEW 4: TRIVIA RESULTS SCREEN -->
+    <section id="view-results" class="w-full hidden flex-col items-center max-w-2xl py-4 text-center">
+      
+      <div class="w-full glass-card rounded-3xl p-6 sm:p-10 flex flex-col items-center relative overflow-hidden shadow-2xl border border-purple-500/30">
+        
+        <!-- Top Confetti Badge -->
+        <div class="text-4xl sm:text-5xl mb-3 animate-bounce-short" id="results-badge-emoji">🎉</div>
+        
+        <span class="text-xs uppercase tracking-widest text-purple-300 font-bold">Diagnóstico Final NyE</span>
+        <h2 class="text-2xl sm:text-4xl font-black font-display text-white mt-1 mb-6">
+          ¡Nivel NyE Calculado!
+        </h2>
+
+        <!-- Circular or Badge Percentage Display -->
+        <div class="relative w-44 h-44 sm:w-52 sm:h-52 flex items-center justify-center my-2">
+          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="transparent" />
+            <circle id="results-circle-progress" cx="60" cy="60" r="50" stroke="url(#result-gradient)" stroke-width="10" stroke-dasharray="314.15" stroke-dashoffset="314.15" stroke-linecap="round" fill="transparent" class="transition-all duration-1000 ease-out" />
+            <defs>
+              <linearGradient id="result-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ff2d75" />
+                <stop offset="50%" stop-color="#9c27b0" />
+                <stop offset="100%" stop-color="#00f7ff" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <span id="results-percentage-text" class="text-4xl sm:text-5xl font-black font-display text-transparent bg-gradient-to-r from-pink-400 via-purple-300 to-nye-neon bg-clip-text">0%</span>
+            <span class="text-xs text-gray-300 font-medium">Compatibilidad</span>
+          </div>
+        </div>
+
+        <!-- Result Title & Description -->
+        <div class="my-6 max-w-lg">
+          <h3 id="results-title" class="text-xl sm:text-2xl font-extrabold text-nye-gold mb-2">
+            ¡Calculando tu vibra!
+          </h3>
+          <p id="results-description" class="text-sm sm:text-base text-gray-200 font-light leading-relaxed">
+            Aquí aparecerá tu veredicto final.
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-md mt-2">
+          <button onclick="app.shareResult()" class="w-full py-3 px-5 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 hover:brightness-110 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-pink-600/30 transition">
+            <i data-lucide="share-2" class="w-4 h-4"></i>
+            <span>Compartir Resultado</span>
+          </button>
+
+          <button onclick="app.navigate('trivia')" class="w-full py-3 px-5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm flex items-center justify-center gap-2 border border-white/10 transition">
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+            <span>Reintentar Trivia</span>
+          </button>
+        </div>
+
+        <button onclick="app.navigate('home')" class="mt-4 text-xs text-gray-400 hover:text-white transition underline">
+          Volver a la pantalla principal
+        </button>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: JSON CONFIGURATION & CUSTOMIZER -->
+  <div id="config-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-nye-carddark border border-purple-500/30 rounded-3xl w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-purple-950/40">
+        <div class="flex items-center gap-2.5">
+          <div class="p-2 rounded-xl bg-purple-600/30 text-purple-300">
+            <i data-lucide="code-2" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-lg text-white">Configuración JSON de la Trivia y Clicker</h3>
+            <p class="text-xs text-gray-300">Personaliza preguntas, respuestas, imagen y rangos de resultado.</p>
+          </div>
+        </div>
+        <button onclick="app.closeConfigModal()" class="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/10 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Tabs & Code Editor) -->
+      <div class="p-6 flex-1 overflow-y-auto flex flex-col gap-4">
+        
+        <div class="bg-purple-900/20 border border-purple-500/20 rounded-2xl p-4 text-xs text-purple-200 flex flex-col gap-1.5">
+          <div class="flex items-center gap-2 font-bold text-purple-300">
+            <i data-lucide="info" class="w-4 h-4"></i> Instrucciones rápidas:
+          </div>
+          <p>• Puedes modificar directamente el JSON abajo y presionar <strong>"Guardar en este navegador"</strong> para probarlo inmediatamente.</p>
+          <p>• Para que quede guardado permanentemente en tu GitHub Pages, haz click en <strong>"Copiar JSON para GitHub"</strong> y pégalo en la variable <code class="bg-black/40 px-1 py-0.5 rounded text-pink-300">DEFAULT_DATA</code> en el código de tu archivo <code class="bg-black/40 px-1 py-0.5 rounded text-pink-300">index.html</code>.</p>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <label for="json-editor-textarea" class="text-xs font-bold uppercase tracking-wider text-gray-400">
+            Estructura JSON:
+          </label>
+          <button onclick="app.resetDefaultConfig()" class="text-xs text-rose-400 hover:text-rose-300 hover:underline">
+            Restablecer valores originales
+          </button>
+        </div>
+
+        <textarea id="json-editor-textarea" spellcheck="false" class="w-full h-80 bg-black/60 border border-purple-500/30 rounded-2xl p-4 font-mono text-xs sm:text-sm text-green-400 focus:outline-none focus:ring-2 focus:ring-nye-pink leading-relaxed resize-none"></textarea>
+
+        <div id="json-error-msg" class="hidden text-xs text-red-400 bg-red-950/40 border border-red-500/30 p-3 rounded-xl"></div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 border-t border-white/10 bg-nye-bgdark/90 flex flex-wrap items-center justify-between gap-3">
+        <button onclick="app.copyJsonToClipboard()" class="px-4 py-2.5 rounded-xl bg-purple-800/40 hover:bg-purple-700/60 border border-purple-500/40 text-purple-200 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span>Copiar JSON para GitHub</span>
+        </button>
+
+        <div class="flex items-center gap-2">
+          <button onclick="app.closeConfigModal()" class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 text-xs sm:text-sm font-medium transition">
+            Cancelar
+          </button>
+          <button onclick="app.saveConfigFromModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white text-xs sm:text-sm font-bold shadow-lg shadow-pink-600/30 hover:brightness-110 transition flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Guardar cambios</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-10 w-full py-4 text-center text-xs text-gray-400 border-t border-white/5">
+    Hecho con ✨ y 💖 para el mejor cumpleaños NyE • ¡Personalizable para GitHub Pages!
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // DEFAULT CONFIGURATION DATA (Easy to edit directly in file or via modal)
+    const DEFAULT_DATA = {
+      clicker: {
+        avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+        soundEnabled: true,
+        upgrades: [
+          { id: "lipgloss", name: "Gloss con Brillantina", desc: "+1 beso por cada click", cost: 15, perClick: 1, perSec: 0, count: 0, icon: "💄" },
+          { id: "peck", name: "Piquito Ninja", desc: "+1 beso automático por segundo", cost: 50, perClick: 0, perSec: 1, count: 0, icon: "😽" },
+          { id: "flowers", name: "Ramo de Rosas NyE", desc: "+5 besos automáticos por segundo", cost: 200, perClick: 0, perSec: 5, count: 0, icon: "💐" },
+          { id: "serenade", name: "Serenata con Mariachi", desc: "+20 besos automáticos por segundo", cost: 800, perClick: 0, perSec: 20, count: 0, icon: "🎺" },
+          { id: "cupid", name: "Flechazo Cósmico", desc: "+10 por click y +50 por segundo", cost: 2500, perClick: 10, perSec: 50, count: 0, icon: "💘" }
+        ]
+      },
+      trivia: [
+        {
+          id: 1,
+          question: "¿Cuál es la bebida predilecta que activa el modo fiestero del cumpleañero?",
+          options: [
+            "Tequila o Mezcal con sal de gusano 🌵",
+            "Cerveza bien helada con clamato 🍺",
+            "Gin Tonic con frutos rojos y glamour 🍸",
+            "Agüita de horchata (modo monje) 🥛"
+          ],
+          correctIndex: 2
+        },
+        {
+          id: 2,
+          question: "Si el cumpleañero llega tarde a una fiesta, ¿cuál es su excusa clásica?",
+          options: [
+            "\"Es que no encontraba qué ponerme (me probé 8 outfits)\" 👗",
+            "\"Había un tráfico extraterrestre imposible\" 🚗",
+            "\"Me quedé dormido 5 minutitos más\" 😴",
+            "\"La puntualidad no es aesthetic, el misterio sí\" ✨"
+          ],
+          correctIndex: 0
+        },
+        {
+          id: 3,
+          question: "¿Qué canción pondría a cantar a todo pulmón al cumpleañero a las 2 AM?",
+          options: [
+            "Cualquiera de Bad Bunny o reggaeton viejito 🐰",
+            "Una de Luis Miguel o Juan Gabriel con sentimiento 🎤",
+            "Pop dosmilero nostálgico (Belanova, RBD) 💖",
+            "Techno oscuro para cerrar los ojos y flotar 🎧"
+          ],
+          correctIndex: 2
+        },
+        {
+          id: 4,
+          question: "¿Cuál es el superpoder no oficial del cumpleañero?",
+          options: [
+            "Hacer amigos de la nada en la fila del baño 🤝",
+            "Tener un chisme fresco siempre listo ☕",
+            "Recordar la letra de canciones de hace 15 años 🎶",
+            "Desaparecer mágicamente cuando toca lavar los platos 🏃"
+          ],
+          correctIndex: 1
+        },
+        {
+          id: 5,
+          question: "Al día siguiente de una fiesta épica, el cumpleañero se recupera con:",
+          options: [
+            "Chilaquiles bien picosos y una coca de vidrio 🌶️",
+            "Dormir 14 horas seguidas sin ver el sol 🛌",
+            "Un suero electrolítico y maratón de películas 🎬",
+            "Revisar todas las fotos y stickers del grupo de WhatsApp 📱"
+          ],
+          correctIndex: 0
+        },
+        {
+          id: 6,
+          question: "¿Cómo reacciona el cumpleañero cuando le cantan 'Las Mañanitas' frente al pastel?",
+          options: [
+            "Sonríe incómodo mientras no sabe a dónde mirar 👀",
+            "Canta sus propias mañanitas con entusiasmo 🎂",
+            "Le da una mordida directa sin importar nada 🍰",
+            "Prepara la pose perfecta para la foto de Instagram 📸"
+          ],
+          correctIndex: 0
+        },
+        {
+          id: 7,
+          question: "¿Cuál es su snack culposo de medianoche indiscutible?",
+          options: [
+            "Tacos de pastor con todo y piña 🌮",
+            "Papas con salsa, limón y gomitas 🍬",
+            "Pizza recalentada en microondas 🍕",
+            "Cereal en taza con leche fría 🥣"
+          ],
+          correctIndex: 1
+        },
+        {
+          id: 8,
+          question: "En una situación dramática o de chisme intenso, el cumpleañero suele decir:",
+          options: [
+            "\"¡No te lo vas a creer, siéntate!\" 😱",
+            "\"Yo no quería decir nada, pero...\" 🤫",
+            "\"Es que la gente de verdad está loca\" 💅",
+            "\"¿Dónde está mi palomita para este circo?\" 🍿"
+          ],
+          correctIndex: 0
+        },
+        {
+          id: 9,
+          question: "Si el cumpleañero ganara la lotería hoy, ¿en qué gastaría primero?",
+          options: [
+            "Un viaje a la playa con todos sus amigos pagado ✈️",
+            "Ropa de diseñador y zapatos innecesariamente caros 🛍️",
+            "Una casa con piscina para hacer fiestas eternas 🏖️",
+            "Adoptar 12 perritos y gatitos 🐶"
+          ],
+          correctIndex: 0
+        },
+        {
+          id: 10,
+          question: "En una sola frase, ¿qué significa tener 'Nivel NyE'?",
+          options: [
+            "Tener la mejor vibra, lealtad absoluta y nunca decir que no a un buen plan 🌟",
+            "Ser el alma de la fiesta y el rey/reina del drama divertido 👑",
+            "Saberse todas las coreografías y chismes del momento 💃",
+            "¡Todas las anteriores juntas con confeti extra! 🎆"
+          ],
+          correctIndex: 3
+        }
+      ],
+      results: [
+        {
+          minPercent: 0,
+          maxPercent: 30,
+          emoji: "🧐",
+          title: "Nivel NyE Inicial: ¿Nos conocemos de vista?",
+          description: "Obtuviste un porcentaje bajito, pero no te preocupes: ¡hoy es la noche perfecta para pedirle su drink favorito al cumpleañero, bailar una canción y subir ese medidor a las nubes!"
+        },
+        {
+          minPercent: 31,
+          maxPercent: 60,
+          emoji: "✌️",
+          title: "Nivel NyE Intermedio: Amigo de Buen Flow",
+          description: "¡Conoces varios secretos y tienes buen ojo! Comparten risas, buenos momentos y el gusto por la buena fiesta. Con un par de shots más, llegan al 100% garantizado."
+        },
+        {
+          minPercent: 61,
+          maxPercent: 85,
+          emoji: "🔥",
+          title: "Nivel NyE Alto: ¡Casi Gemelos Cósmicos!",
+          description: "¡Brillante! Tienes el radar sincronizado con el cumpleañero: sabes sus mañas, sus gustos musicales y hasta sus caras de incomodidad. ¡Una verdadera joya de amistad!"
+        },
+        {
+          minPercent: 86,
+          maxPercent: 100,
+          emoji: "👑✨",
+          title: "Nivel NyE Legendario: ¡Alma Gemela NyE Suprema!",
+          description: "¡100% compatible! Comparten exactamente las mismas neuronas fiesteras, el mismo sentido del humor y el mismo amor por el brillo. ¡Vayan de inmediato a darse un abrazo o un beso de cumple!"
+        }
+      ]
+    };
+
+    // Simple Web Audio Sound Synthesizer (No external dependencies)
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            this.ctx = new AudioContext();
+          }
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      playKiss() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          
+          const now = this.ctx.currentTime;
+          osc.frequency.setValueAtTime(400, now);
+          osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.18);
+
+          gain.gain.setValueAtTime(0.35, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc.start(now);
+          osc.stop(now + 0.18);
+        } catch (e) {
+          console.warn("Audio error:", e);
+        }
+      }
+
+      playCorrect() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        try {
+          const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+          notes.forEach((freq, idx) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            const start = this.ctx.currentTime + (idx * 0.06);
+            osc.frequency.setValueAtTime(freq, start);
+            gain.gain.setValueAtTime(0.2, start);
+            gain.gain.exponentialRampToValueAtTime(0.001, start + 0.15);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(start);
+            osc.stop(start + 0.15);
+          });
+        } catch(e) {}
+      }
+
+      playUpgrade() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          const now = this.ctx.currentTime;
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(300, now);
+          osc.frequency.linearRampToValueAtTime(600, now + 0.12);
+          osc.frequency.linearRampToValueAtTime(900, now + 0.25);
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        } catch(e) {}
+      }
+    }
+
+    class NyEApp {
+      constructor() {
+        this.sound = new SoundEngine();
+        this.data = this.loadData();
+        
+        // Clicker State
+        this.kisses = 0;
+        this.baseClickPower = 1;
+        this.kps = 0; // Kisses per second
+        this.clickerInterval = null;
+
+        // Trivia State
+        this.currentQIndex = 0;
+        this.score = 0;
+        this.answeredCurrent = false;
+
+        this.init();
+      }
+
+      loadData() {
+        try {
+          const saved = localStorage.getItem('nye_app_data_v1');
+          if (saved) {
+            return JSON.parse(saved);
+          }
+        } catch (e) {
+          console.error("Failed to load local storage data:", e);
+        }
+        return JSON.parse(JSON.stringify(DEFAULT_DATA));
+      }
+
+      saveDataLocally() {
+        try {
+          localStorage.setItem('nye_app_data_v1', JSON.stringify(this.data));
+          this.showToast("Configuración guardada en el navegador 🎉", "success");
+        } catch (e) {
+          this.showToast("Error al guardar en almacenamiento local", "error");
+        }
+      }
+
+      init() {
+        // Initialize Clicker Avatar from data
+        const avatarImg = document.getElementById('clicker-avatar-img');
+        if (avatarImg && this.data.clicker && this.data.clicker.avatarUrl) {
+          avatarImg.src = this.data.clicker.avatarUrl;
+        }
+
+        // Setup Clicker Event Listeners
+        const targetContainer = document.getElementById('kiss-target-container');
+        if (targetContainer) {
+          targetContainer.addEventListener('pointerdown', (e) => this.handleKissClick(e));
+        }
+
+        // Start Clicker Loop
+        this.startClickerLoop();
+        this.renderUpgrades();
+
+        // Update Icons
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      }
+
+      navigate(viewName) {
+        const views = ['home', 'clicker', 'trivia', 'results'];
+        views.forEach(v => {
+          const el = document.getElementById(`view-${v}`);
+          if (el) {
+            if (v === viewName) {
+              el.classList.remove('hidden');
+              el.classList.add('flex');
+            } else {
+              el.classList.add('hidden');
+              el.classList.remove('flex');
+            }
+          }
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        if (viewName === 'trivia') {
+          this.startTrivia();
+        }
+
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      }
+
+      toggleSound() {
+        this.sound.enabled = !this.sound.enabled;
+        const btn = document.getElementById('audio-toggle-btn');
+        if (btn) {
+          btn.innerHTML = this.sound.enabled 
+            ? '<i data-lucide="volume-2" class="w-5 h-5"></i>' 
+            : '<i data-lucide="volume-x" class="w-5 h-5 text-gray-400"></i>';
+          lucide.createIcons();
+        }
+        this.showToast(this.sound.enabled ? "Sonido activado 🔊" : "Sonido silenciado 🔇", "info");
+      }
+
+      handleKissClick(event) {
+        this.sound.playKiss();
+
+        // Calculate power
+        let clickVal = this.baseClickPower;
+        if (this.data.clicker.upgrades) {
+          this.data.clicker.upgrades.forEach(u => {
+            clickVal += (u.perClick || 0) * (u.count || 0);
+          });
+        }
+
+        this.kisses += clickVal;
+        this.updateClickerUI();
+
+        // Visual click feedback on avatar frame
+        const frame = document.getElementById('kiss-avatar-frame');
+        if (frame) {
+          frame.classList.add('scale-95');
+          setTimeout(() => frame.classList.remove('scale-95'), 90);
+        }
+
+        // Spawn floating kiss emoji & number
+        this.spawnFloatingKiss(event, clickVal);
+      }
+
+      spawnFloatingKiss(event, value) {
+        const container = document.getElementById('kiss-target-container');
+        if (!container) return;
+
+        const rect = container.getBoundingClientRect();
+        let clientX = event.clientX;
+        let clientY = event.clientY;
+
+        // Fallback for touch if needed
+        if (!clientX || !clientY) {
+          clientX = rect.left + rect.width / 2;
+          clientY = rect.top + rect.height / 2;
+        }
+
+        const el = document.createElement('div');
+        el.className = 'floating-kiss text-pink-400 flex items-center gap-1 drop-shadow-md';
+        
+        const randomEmojis = ['💋', '💖', '✨', '😘', '💕', '🔥'];
+        const emoji = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
+        
+        el.innerHTML = `<span class="text-2xl">${emoji}</span> <span class="text-nye-gold text-lg">+${value}</span>`;
+
+        // Position relative to clicker container
+        const x = clientX - rect.left - 20 + (Math.random() * 40 - 20);
+        const y = clientY - rect.top - 20;
+
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+
+        container.appendChild(el);
+
+        setTimeout(() => {
+          if (el && el.parentNode) {
+            el.parentNode.removeChild(el);
+          }
+        }, 1200);
+      }
+
+      startClickerLoop() {
+        if (this.clickerInterval) clearInterval(this.clickerInterval);
+
+        this.clickerInterval = setInterval(() => {
+          let autoKisses = 0;
+          if (this.data.clicker && this.data.clicker.upgrades) {
+            this.data.clicker.upgrades.forEach(u => {
+              autoKisses += (u.perSec || 0) * (u.count || 0);
+            });
+          }
+
+          this.kps = autoKisses;
+          if (autoKisses > 0) {
+            this.kisses += (autoKisses / 10);
+            this.updateClickerUI();
+          }
+        }, 100);
+      }
+
+      updateClickerUI() {
+        const kissCounter = document.getElementById('kiss-counter');
+        const kpsEl = document.getElementById('kisses-per-sec');
+        
+        if (kissCounter) kissCounter.innerText = Math.floor(this.kisses).toLocaleString();
+        if (kpsEl) kpsEl.innerText = this.kps.toLocaleString();
+
+        // Update button states in upgrades
+        this.renderUpgrades();
+      }
+
+      buyUpgrade(id) {
+        const upgrade = this.data.clicker.upgrades.find(u => u.id === id);
+        if (!upgrade) return;
+
+        if (this.kisses >= upgrade.cost) {
+          this.kisses -= upgrade.cost;
+          upgrade.count = (upgrade.count || 0) + 1;
+          // Scale cost by 1.25x
+          upgrade.cost = Math.round(upgrade.cost * 1.25);
+          
+          this.sound.playUpgrade();
+          this.updateClickerUI();
+          this.showToast(`¡Compraste ${upgrade.name}! ${upgrade.icon}`, "success");
+
+          // Little confetti burst on expensive upgrades
+          if (upgrade.cost > 300 && window.confetti) {
+            confetti({ particleCount: 25, spread: 60, origin: { y: 0.7 } });
+          }
+        } else {
+          this.showToast("¡Te faltan besos para esta mejora!", "warning");
+        }
+      }
+
+      renderUpgrades() {
+        const list = document.getElementById('upgrades-list');
+        if (!list || !this.data.clicker || !this.data.clicker.upgrades) return;
+
+        list.innerHTML = '';
+        this.data.clicker.upgrades.forEach(u => {
+          const canAfford = this.kisses >= u.cost;
+          const card = document.createElement('div');
+          card.className = `p-3 rounded-2xl border transition-all duration-200 flex items-center justify-between gap-3 ${
+            canAfford 
+              ? 'bg-purple-900/30 border-purple-500/40 hover:bg-purple-800/40 cursor-pointer' 
+              : 'bg-black/30 border-white/5 opacity-60'
+          }`;
+
+          card.onclick = () => this.buyUpgrade(u.id);
+
+          card.innerHTML = `
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-500/30 flex items-center justify-center text-xl shrink-0">
+                ${u.icon || '🎁'}
+              </div>
+              <div class="flex flex-col text-left">
+                <div class="flex items-center gap-1.5">
+                  <span class="font-bold text-sm text-white">${u.name}</span>
+                  ${u.count > 0 ? `<span class="bg-pink-500/30 text-pink-300 text-[10px] px-1.5 py-0.5 rounded-full font-bold">x${u.count}</span>` : ''}
+                </div>
+                <span class="text-[11px] text-gray-300 leading-tight">${u.desc}</span>
+              </div>
+            </div>
+            <button class="shrink-0 px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1 ${
+              canAfford ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-md' : 'bg-white/10 text-gray-400'
+            }">
+              <span>${u.cost}</span>
+              <span>💋</span>
+            </button>
+          `;
+
+          list.appendChild(card);
+        });
+      }
+
+      startTrivia() {
+        this.currentQIndex = 0;
+        this.score = 0;
+        this.answeredCurrent = false;
+        this.renderQuestion();
+      }
+
+      renderQuestion() {
+        const questions = this.data.trivia;
+        if (!questions || questions.length === 0) return;
+
+        if (this.currentQIndex >= questions.length) {
+          this.finishTrivia();
+          return;
+        }
+
+        this.answeredCurrent = false;
+        const q = questions[this.currentQIndex];
+
+        // Update progress counters
+        const indexBadge = document.getElementById('quiz-question-index-badge');
+        const scoreBadge = document.getElementById('quiz-score-badge');
+        const progressBar = document.getElementById('quiz-progress-bar');
+        const qText = document.getElementById('quiz-question-text');
+        const optContainer = document.getElementById('quiz-options-container');
+        const feedbackBox = document.getElementById('quiz-feedback-box');
+
+        if (indexBadge) indexBadge.innerText = `Pregunta ${this.currentQIndex + 1} de ${questions.length}`;
+        if (scoreBadge) scoreBadge.innerText = `Aciertos: ${this.score}`;
+        
+        const progressPercent = ((this.currentQIndex + 1) / questions.length) * 100;
+        if (progressBar) progressBar.style.width = `${progressPercent}%`;
+
+        if (qText) qText.innerText = q.question;
+        if (feedbackBox) feedbackBox.classList.add('hidden'); feedbackBox.classList.remove('flex');
+
+        // Render option buttons
+        if (optContainer) {
+          optContainer.innerHTML = '';
+          q.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = "w-full text-left p-4 rounded-2xl bg-purple-950/40 hover:bg-purple-900/60 border border-purple-500/20 hover:border-pink-500/50 text-sm sm:text-base text-gray-100 font-medium transition-all duration-200 flex items-center justify-between group";
+            
+            btn.innerHTML = `
+              <div class="flex items-center gap-3">
+                <span class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-xs font-bold text-purple-300 group-hover:bg-pink-500 group-hover:text-white transition">
+                  ${String.fromCharCode(65 + idx)}
+                </span>
+                <span>${opt}</span>
+              </div>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500 group-hover:text-pink-400 transition"></i>
+            `;
+
+            btn.onclick = () => this.handleAnswer(idx, btn);
+            optContainer.appendChild(btn);
+          });
+          if (window.lucide) lucide.createIcons();
+        }
+      }
+
+      handleAnswer(selectedIndex, selectedBtn) {
+        if (this.answeredCurrent) return;
+        this.answeredCurrent = true;
+
+        const q = this.data.trivia[this.currentQIndex];
+        const isCorrect = selectedIndex === q.correctIndex;
+        const optButtons = document.getElementById('quiz-options-container').querySelectorAll('button');
+
+        optButtons.forEach((btn, idx) => {
+          btn.disabled = true;
+          if (idx === q.correctIndex) {
+            btn.classList.remove('bg-purple-950/40', 'border-purple-500/20');
+            btn.classList.add('bg-emerald-900/60', 'border-emerald-400', 'text-emerald-200');
+          } else if (idx === selectedIndex && !isCorrect) {
+            btn.classList.remove('bg-purple-950/40', 'border-purple-500/20');
+            btn.classList.add('bg-rose-950/60', 'border-rose-500', 'text-rose-200');
+          } else {
+            btn.classList.add('opacity-40');
+          }
+        });
+
+        const feedbackBox = document.getElementById('quiz-feedback-box');
+        const feedbackMsg = document.getElementById('quiz-feedback-msg');
+
+        if (isCorrect) {
+          this.score++;
+          this.sound.playCorrect();
+          if (feedbackMsg) feedbackMsg.innerHTML = `<span class="text-emerald-400 font-bold text-base">¡Exacto! ✨ Totalmente NyE.</span>`;
+        } else {
+          if (feedbackMsg) feedbackMsg.innerHTML = `<span class="text-pink-400 font-bold text-base">¡Casi! Pero esa no era la respuesta más NyE.</span>`;
+        }
+
+        const scoreBadge = document.getElementById('quiz-score-badge');
+        if (scoreBadge) scoreBadge.innerText = `Aciertos: ${this.score}`;
+
+        if (feedbackBox) {
+          feedbackBox.classList.remove('hidden');
+          feedbackBox.classList.add('flex');
+        }
+      }
+
+      nextQuestion() {
+        this.currentQIndex++;
+        this.renderQuestion();
+      }
+
+      finishTrivia() {
+        this.navigate('results');
+
+        const totalQ = this.data.trivia.length || 10;
+        const percentage = Math.round((this.score / totalQ) * 100);
+
+        // Find result bracket
+        let matchedResult = this.data.results[this.data.results.length - 1];
+        if (this.data.results && this.data.results.length > 0) {
+          for (const res of this.data.results) {
+            if (percentage >= res.minPercent && percentage <= res.maxPercent) {
+              matchedResult = res;
+              break;
+            }
+          }
+        }
+
+        // Animate circular meter
+        const circleProgress = document.getElementById('results-circle-progress');
+        const percentageText = document.getElementById('results-percentage-text');
+        const titleEl = document.getElementById('results-title');
+        const descEl = document.getElementById('results-description');
+        const emojiEl = document.getElementById('results-badge-emoji');
+
+        if (emojiEl) emojiEl.innerText = matchedResult.emoji || '🎉';
+        if (titleEl) titleEl.innerText = matchedResult.title;
+        if (descEl) descEl.innerText = matchedResult.description;
+
+        // Circular stroke math (perimeter ~ 314.15 for r=50)
+        const circumference = 2 * Math.PI * 50;
+        const offset = circumference - (percentage / 100) * circumference;
+
+        setTimeout(() => {
+          if (circleProgress) circleProgress.style.strokeDashoffset = offset;
+          if (percentageText) percentageText.innerText = `${percentage}%`;
+        }, 150);
+
+        // Confetti party
+        if (window.confetti) {
+          confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } });
+          setTimeout(() => {
+            confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
+            confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
+          }, 350);
+        }
+      }
+
+      shareResult() {
+        const totalQ = this.data.trivia.length || 10;
+        const percentage = Math.round((this.score / totalQ) * 100);
+        const textToShare = `✨ ¡Obtuve un ${percentage}% de Nivel NyE en el test del cumpleañero! 🎇 ¿Podrás superarme? Entra y pruébalo aquí.`;
+
+        // Clipboard copy fallback
+        const textArea = document.createElement("textarea");
+        textArea.value = textToShare;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          const success = document.execCommand('copy');
+          if (success) {
+            this.showToast("¡Resultado copiado al portapapeles! 📋", "success");
+          } else {
+            this.showToast("Copia manual: " + textToShare, "info");
+          }
+        } catch (err) {
+          this.showToast("No se pudo copiar automáticamente.", "warning");
+        }
+        document.body.removeChild(textArea);
+      }
+
+      openConfigModal() {
+        const modal = document.getElementById('config-modal');
+        const textarea = document.getElementById('json-editor-textarea');
+        const errBox = document.getElementById('json-error-msg');
+
+        if (textarea) {
+          textarea.value = JSON.stringify(this.data, null, 2);
+        }
+        if (errBox) {
+          errBox.classList.add('hidden');
+        }
+
+        if (modal) {
+          modal.classList.remove('hidden');
+          setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+        if (window.lucide) lucide.createIcons();
+      }
+
+      closeConfigModal() {
+        const modal = document.getElementById('config-modal');
+        if (modal) {
+          modal.classList.add('opacity-0');
+          setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+      }
+
+      saveConfigFromModal() {
+        const textarea = document.getElementById('json-editor-textarea');
+        const errBox = document.getElementById('json-error-msg');
+
+        try {
+          const parsed = JSON.parse(textarea.value);
+          if (!parsed.trivia || !Array.isArray(parsed.trivia)) {
+            throw new Error("El JSON debe contener un arreglo 'trivia' con las preguntas.");
+          }
+          if (!parsed.clicker || !parsed.results) {
+            throw new Error("El JSON debe contener los objetos 'clicker' y 'results'.");
+          }
+
+          this.data = parsed;
+          this.saveDataLocally();
+          this.init(); // Refresh UI bindings
+          this.closeConfigModal();
+        } catch (err) {
+          if (errBox) {
+            errBox.innerText = `Error en el formato JSON: ${err.message}`;
+            errBox.classList.remove('hidden');
+          }
+        }
+      }
+
+      resetDefaultConfig() {
+        const textarea = document.getElementById('json-editor-textarea');
+        if (textarea) {
+          textarea.value = JSON.stringify(DEFAULT_DATA, null, 2);
+        }
+        this.showToast("Valores por defecto restablecidos en el editor.", "info");
+      }
+
+      copyJsonToClipboard() {
+        const textarea = document.getElementById('json-editor-textarea');
+        if (!textarea) return;
+
+        textarea.select();
+        document.execCommand('copy');
+        this.showToast("¡JSON copiado! Pégalo en tu código para GitHub Pages.", "success");
+      }
+
+      showToast(message, type = "info") {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        let bgClass = "bg-purple-900/90 border-purple-500/40 text-purple-100";
+        if (type === 'success') bgClass = "bg-emerald-950/90 border-emerald-500/50 text-emerald-200";
+        if (type === 'warning') bgClass = "bg-amber-950/90 border-amber-500/50 text-amber-200";
+        if (type === 'error') bgClass = "bg-rose-950/90 border-rose-500/50 text-rose-200";
+
+        toast.className = `pointer-events-auto px-4 py-3 rounded-2xl border shadow-xl text-xs sm:text-sm font-semibold flex items-center gap-2 backdrop-blur-md transition-all duration-300 transform translate-x-5 opacity-0 ${bgClass}`;
+        toast.innerHTML = `<span>${message}</span>`;
+
+        container.appendChild(toast);
+
+        // Animate in
+        setTimeout(() => {
+          toast.classList.remove('translate-x-5', 'opacity-0');
+        }, 10);
+
+        // Dismiss after 3s
+        setTimeout(() => {
+          toast.classList.add('translate-x-5', 'opacity-0');
+          setTimeout(() => {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+          }, 300);
+        }, 3200);
+      }
+    }
+
+    // Bootstrap app globally
+    let app;
+    window.addEventListener('DOMContentLoaded', () => {
+      app = new NyEApp();
+    });
+  </script>
+</body>
+</html>
